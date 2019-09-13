@@ -1,12 +1,18 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>LabDROID</title>
+        <title>LabDroid</title>
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet'>
         <style>
+            html {
+                min-width: 320px;
+            }
+
+
             body {
+                min-width: 320px;
                 font-family: 'Source Sans Pro';
                 margin: 0;
             }
@@ -15,6 +21,11 @@
             h1, h2, h3 {
                 font-family: 'Poppins';
                 margin: 0;
+            }
+
+
+            h1 {
+                font-size: 3em;
             }
             
             
@@ -26,13 +37,14 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                height: 240px;
+                height: 180px;
+                box-shadow: inset rgba(0, 0, 0, 0.16) 0px 5px 40px;
             }
 
 
             main {
                 position: absolute;
-                top: 24px;
+                top: 0px;
                 left: 0;
                 right: 0;
                 display: flex;
@@ -40,32 +52,37 @@
                 align-items: center;
             }
 
-            article:first-of-type {
-                padding: 12px;
-                width: 70%;
-                margin-bottom: 24px;
-                color: #ffffff;
+
+            main > article {
+                width: 90%;
                 max-width: 640px;
             }
 
-            article:not(:first-of-type) {
+
+            main > article:first-of-type {
+                box-sizing: border-box;
+                padding: 12px 24px;
+                color: #ffffff;
+            }
+
+
+            main > article:not(:first-of-type) {
                 background-color: #ffffff;
                 border-radius: 6px;
                 border-top: 2px solid #63a4ff;
                 padding: 12px;
-                width: 90%;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
                 margin-bottom: 24px;
-                max-width: 640px;
             }
         </style>
     </head>
     <body>
-        <header></header>
+        <header>
+        </header>
         <main>
             <article>
                 <h1>LabDroid</h1>
-                <p>Welcome to the first all including rapid prototyping environment for Android.</p>
+                <small>Welcome to the first all including rapid prototyping environment for Android.</small>
             </article>
             <article>
                 <h3>What is LabDroid?</h3>
@@ -80,7 +97,7 @@
                     </li>
                     <li>
                     Developing Algorithm<br />
-                    Use LabDROID as data source and distributer. After fetching the data you can send them directly to a server!
+                    Use LabDroid as data source and distributer. After fetching the data you can send them directly to a server!
                     </li>
                     <li>
                     Extending Solutions<br />
