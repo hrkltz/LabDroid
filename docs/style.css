@@ -1,0 +1,87 @@
+body {
+    font-family: 'Source Sans Pro';
+    margin: 0;
+}
+
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins';
+    margin: 0;
+}
+
+
+h1 {
+    font-size: 3em;
+}
+
+
+h4 {
+    margin: 16px 0 4px 0;
+}
+
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #424242;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 180px;
+    box-shadow: inset rgba(0, 0, 0, 0.16) 0px 5px 40px;
+}
+
+
+main {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+main > article {
+    width: 90%;
+    max-width: 640px;
+}
+
+
+main > article:first-of-type {
+    box-sizing: border-box;
+    padding: 12px 24px;
+    color: #ffffff;
+}
+
+
+main > article:not(:first-of-type) {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border-top: 2px solid #63a4ff;
+    padding: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+    margin-bottom: 24px;
+}
+
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+
+ul li {
+    position: relative;
+    margin-left: 1.25em;
+}
+
+
+ul li:before {
+    position: absolute;
+    left: -1.25em;
+    content: '\2799';
+}
