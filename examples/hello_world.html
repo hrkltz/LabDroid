@@ -1,0 +1,68 @@
+<html>
+    <body>
+        <div>
+            <input id="ip" type="text" value="ws://192.168.1.2:8081/ws/user/ws0" />
+            <button
+            id="connect"
+            onclick="connect()">Connect</button>
+            <button
+            id="disconnect"
+            hidden="true"
+            onclick="disconnect()">Disconnect</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Time</td>
+                    <td>Value</td>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </body>
+    <script>
+        var gTableBody = document.getElementById('tableBody');
+        var gWebSocket;
+        
+        function pad(n) {
+            return n<10 ? '0'+n : n
+        }
+
+        function connect() {
+            gWebSocket = new WebSocket(document.getElementById('ip').value);
+
+            gWebSocket.onopen = function(pEvent) { };
+
+            gWebSocket.onmessage = function(pEvent) {
+                let newRow = gTableBody.insertRow(0);
+                let lTimeCell = newRow.insertCell(0);
+                let lDataCell = newRow.insertCell(1);
+
+                let lDate = new Date();
+                let lTimeTextNode = document.createTextNode(`${pad(lDate.getHours())}:${pad(lDate.getMinutes())}:${pad(lDate.getSeconds())}.${pad(lDate.getMilliseconds())}`);
+                let lDataTextNode = document.createTextNode(pEvent.data);
+
+                lTimeCell.appendChild(lTimeTextNode);
+                lDataCell.appendChild(lDataTextNode);
+            };
+
+            gWebSocket.onclose = function(pEvent) { };
+
+            gWebSocket.onerror = function(pEvent) { };
+
+            document.getElementById('connect').hidden = true;
+            document.getElementById('disconnect').hidden = false;
+        }
+
+
+        function disconnect() {
+            if (gWebSocket) {
+                gWebSocket.close();
+                delete gWebSocket;
+
+                document.getElementById('connect').hidden = false;
+                document.getElementById('disconnect').hidden = true;
+            }
+        }
+    </script>
+</html>
