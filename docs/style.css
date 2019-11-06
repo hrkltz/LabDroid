@@ -19,10 +19,6 @@ h4 {
     margin: 16px 0 4px 0;
 }
 
-body > a {
-    filter: grayscale(100%)
-}
-
 
 header {
     position: sticky;
@@ -84,24 +80,50 @@ main > article > div {
 }
 
 
+main a {
+    color: unset;
+    text-decoration: unset;
+    cursor: pointer;
+    font-weight: bold;
+}
+main a:not(:hover) {
+    filter: grayscale(100%) opacity(70%);
+}
+main a img {
+    position: relative;
+}
+main a:hover img {
+    top: -10px;
+}
+main a label {
+    pointer-events: none;
+}
+
+
 main > article:nth-child(1) > div {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     text-align: center;
 }
-main > article:nth-child(1) > div > div {
+main > article:nth-child(1) > div > a > div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-main > article:nth-child(1) > div > div > img {
+main > article:nth-child(1) img {
     margin-bottom: 10px;
+}
+main > article:nth-child(2) p {
+    text-align: left;
+    font-size: 18px;
 }
 
 
 main > article:nth-child(2) {
-    background-color: rgb(153, 214, 255);
+    background-color: #5c7dba;
+    color: #ffffff;
+    text-align: center;
 }
 main > article:nth-child(2) > div > div {
     display: flex;
