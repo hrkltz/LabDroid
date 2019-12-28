@@ -1,23 +1,184 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>LabDroid</title>
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-        </header>
-        <main>
-            <article>
-                <h1>Quickstart</h1>
-            </article>
-            <article>
-                <h3>Introduction</h3>
-                <p>Before you start using LabDroid I suggest you to watch this video. It shows all basic steps to start your first project.</p>
-            </article>
-        </main>
-    </body>
+<head>
+  <title>LabDroid Documentation</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #eee;
+      margin: 0;
+    }
+    h1,h2,h3,h4 {
+      font-family: 'Poppins', sans-serif;
+    }
+    header {
+      background-color: #fff;
+      display: flex;
+      flex-direction: row;
+      padding: 5px 10px;
+    }
+    header > label {
+      font-size: 22px;
+    }
+    main {
+      display: flex;
+      padding: 5px 10px;
+      flex-direction: row;
+    }
+    aside {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      min-width: 200px;
+    }
+    section {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 5px;
+      margin-bottom: 5px;
+      max-width: 960px;
+      width: 100%;
+      display: none;
+    }
+    article > div {
+      padding: 5px;
+    }
+    article > div:not(:last-of-type) {
+      border-bottom: 1px solid #ddd;
+    }
+    article > div > label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    span.type {
+      color: #5b6fab;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <label>LabDroid Documentation</label>
+  </header>
+  <main>
+    <aside>
+      Basics
+      <a href="?page=basics_ide">> IDE</a>
+      Nodes
+      <a href="?page=nodes_script">> Script</a>
+      > Accelerometer<br />
+      > Gyroscope<br />
+      > GPS<br />
+      > WebSocket<br />
+
+    </aside>
+    <section id="basics_ide">
+      <h1>IDE</h1>
+      <h2>Access</h2>
+      <article>
+        LabDroid is shipped with an inbuild IDE based on web technologies. This allows you to prepare your projects from your PC, MAC or any
+        other platform which supports Google Chrome. Of course you can also try to use Firefox or any other browser but at the moment it's
+        impossible for me to check all browsers. If possible please use the latest version of Google Chrome or Chromium.<br /><br />
+
+        After activating the LabDroid service on your phone you can open the IDE via http://PHONE_IP:8080. The IP of your phone will be
+        shown in the notifcation area.<br /><br />
+      </article>
+      <h2>Your first project</h2>
+      <article>
+
+      </article>
+      <h2>Next steps</h2>
+      <article>
+        Now you are able to start using LabDroid. Further information about the nodes can be founded on this page. Just select the section
+        of your interest on the left side.
+      </article>
+    </section>
+    <section id="nodes_script">
+      <h1>Script Node</h1>
+      <h2>Basics</h2>
+        <article>
+          LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
+          some credits to Ian Bull the founder of J2V8: Great job man! :)<br /><br />
+  
+          With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
+          LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
+          href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
+          For LabDroid I implemented some additional functions which will be explained in the following section.
+        </article>
+      <h2>API</h2>
+      <article>
+          <div>
+          <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>, blocking: <span class="type">bool</span>)</label>
+          <p>Receives an object via the input port from the conected node.</p>
+          <table>
+            <th>
+              Parameters
+            </th>
+            <tr>
+              <td>port</td>
+              <td>The number to address the wanted input port. Starting from 0 for the first one.</td>
+            </tr>
+            <tr>
+              <td>blocking</td>
+              <td>true: This function will return after receiving a new value.<br />false: Will return immeditilay null in case there is no new data.</td>
+            </tr>
+          </table>
+          <table>
+            <th>
+              Returns
+            </th>
+            <tr>
+              <td>any</td>
+              <td>The object which was received through the corresponding input port.</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <label><span class="type">void</span> $out(port: <span class="type">number</span>, object: <span class="type">any</span>)</label>
+          <p>Send an object via the output port to the connected node.</p>
+          <table>
+            <th>
+              Parameters
+            </th>
+            <tr>
+              <td>port</td>
+              <td>The number to address the wanted output port. Starting from 0 for the first one.</td>
+            </tr>
+            <tr>
+              <td>object</td>
+              <td>The data you like to send out. It's possobile to place any kind of data (e.g. string, number, array or a object).</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <label><span class="type">void</span> $sleep(time: <span class="type">number</span>)</label>
+          <p>Enables you to pause the script node for some time.</p>
+          <table>
+            <th>
+              Parameters
+            </th>
+            <tr>
+              <td>time</td>
+              <td>A number to force the script node to sleep/wait for the desired time (milliseconds).</td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <label><span class="type">number</span> $getNano()</label>
+          <p>Returns the current system time of your phone, in nanoseconds.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+<script>
+  var gPage = location.search.split('page=')[1];
+
+  if (!gPage) {
+    gPage = 'basics_ide';
+  }
+ 
+  document.getElementById(gPage).style.display = 'unset';
+</script>
 </html>
