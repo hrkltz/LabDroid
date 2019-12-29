@@ -50,6 +50,14 @@ header > div > div {
     align-items: center;
 }
 
+header a#docu {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
 
 main {
     width: 100%;
