@@ -15,29 +15,35 @@
       background-color: #eee;
       margin: 0;
     }
+
     h1,h2,h3,h4 {
       font-family: 'Poppins', sans-serif;
     }
+
     header {
       background-color: #fff;
       display: flex;
       flex-direction: row;
       padding: 5px 10px;
     }
+
     header > label {
       font-size: 22px;
     }
+
     main {
       display: flex;
       padding: 5px 10px;
       flex-direction: row;
     }
+
     aside {
       display: flex;
       flex-direction: column;
       width: 200px;
       min-width: 200px;
     }
+
     section {
       background-color: #ffffff;
       border: 1px solid #ddd;
@@ -48,15 +54,17 @@
       width: 100%;
       display: none;
     }
+
     article > div {
       padding: 5px;
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
+
     article > div:not(:last-of-type) {
       border-bottom: 1px solid #ddd;
     }
+    
     article > div > label {
       font-size: 16px;
       font-weight: bold;
@@ -126,7 +134,7 @@
       <h2>API</h2>
       <article>
           <div>
-          <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>, blocking: <span class="type">bool</span>)</label>
+          <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>)</label>
           <p>Receives an object via the input port from the conected node.</p>
           <table>
             <th>
@@ -135,10 +143,6 @@
             <tr>
               <td>port</td>
               <td>The number to address the wanted input port. Starting from 0 for the first one.</td>
-            </tr>
-            <tr>
-              <td>blocking</td>
-              <td>true: This function will return after receiving a new value.<br />false: Will return immeditilay null in case there is no new data.</td>
             </tr>
           </table>
           <table>
