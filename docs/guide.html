@@ -97,10 +97,10 @@
       # Software<br />
       <a href="?page=nodes_script"># &nbsp;&nbsp;Script</a>
       # Hardware<br />
-      # &nbsp;&nbsp;Accelerometer<br />
-      # &nbsp;&nbsp;GPS<br />
-      # &nbsp;&nbsp;Gyroscope<br />
-      # &nbsp;&nbsp;Magnetometer<br />
+      <a href="?page=nodes_accelerometer"># &nbsp;&nbsp;Accelerometer</a>
+      <a href="?page=nodes_gps"># &nbsp;&nbsp;GPS</a>
+      <a href="?page=nodes_gyroscope"># &nbsp;&nbsp;Gyroscope</a>
+      <a href="?page=nodes_magnetometer"># &nbsp;&nbsp;Magnetometer</a>
       <a href="?page=nodes_nfc"># &nbsp;&nbsp;NFC</a>
       <a href="?page=nodes_vibrator"># &nbsp;&nbsp;Vibrator</a>
       # Communication<br />
@@ -242,6 +242,151 @@
     </section>
 
 
+    <section id="nodes_accelerometer">
+      <h1>Accelerometer Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            The accelerometer reports the acceleration of the device along the 
+            three sensor axes. The measured acceleration includes both the 
+            physical acceleration (change of velocity) and the gravity.
+          </p>
+          <p>
+            All values are in SI units [m/s^2] and measure the acceleration of 
+            the device minus the force of gravity along the 3 sensor axes.
+          </p>
+        </article>
+      <article>
+        <h2>
+          Output
+        </h2>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              {<br />
+              &nbsp;&nbsp;"x": float <i>[m/s^2]</i>,<br />
+              &nbsp;&nbsp;"y": float <i>[m/s^2]</i>,<br />
+              &nbsp;&nbsp;"z": float <i>[m/s^2]</i><br />
+              }
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+    <section id="nodes_gps">
+      <h1>GPS Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            GPS is one kind of a Global Navigation Satellite System (GNSS). The 
+            GPS node can be used to get the current position or speed of the 
+            device. Once the module collects enough satellite data to calculate 
+            an accurate position, it has a valid location (a fix ) that it can 
+            report.
+          </p>
+          <p>
+            Note: The first fix can take some time (up to a few minutes if the 
+            device is indoor).
+          </p>
+        </article>
+      <article>
+        <h2>
+          Output
+        </h2>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              {<br />
+              &nbsp;&nbsp;"accuracy": float,<br />
+              &nbsp;&nbsp;"altitude": float <i>[m]</i>,<br />
+              &nbsp;&nbsp;"bearing": float <i>[deg]</i><br />
+              &nbsp;&nbsp;"latitude": float<br />
+              &nbsp;&nbsp;"longitude": float<br />
+              &nbsp;&nbsp;"speed": float <i>[m/s]</i><br />
+              }
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+
+    <section id="nodes_gyroscope">
+      <h1>Gyroscope Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            The gyroscope reports the rate of rotation of the device around the 
+            three sensor axes. Rotation is positive in the counterclockwise 
+            direction (right-hand rule).
+          </p>
+          <p>
+            All values are in radians per second (rad/s).
+          </p>
+        </article>
+      <article>
+        <h2>
+          Output
+        </h2>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              {<br />
+              &nbsp;&nbsp;"x": float <i>[rad/s]</i>,<br />
+              &nbsp;&nbsp;"y": float <i>[rad/s]</i>,<br />
+              &nbsp;&nbsp;"z": float <i>[rad/s]</i><br />
+              }
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+
+    <section id="nodes_magnetometer">
+      <h1>Magnetometer Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            The magnetometer is used to measure the ambient magnetic field. The 
+            measurement is reported in the x, y and z fields.
+          </p>
+          <p>
+            All values are in micro-Tesla (uT).
+          </p>
+        </article>
+      <article>
+        <h2>
+          Output
+        </h2>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              {<br />
+              &nbsp;&nbsp;"x": float <i>[uT]</i>,<br />
+              &nbsp;&nbsp;"y": float <i>[uT]</i>,<br />
+              &nbsp;&nbsp;"z": float <i>[uT]</i><br />
+              }
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+
     <section id="nodes_vibrator">
       <h1>Vibrator Node</h1>
       <h2>Basics</h2>
@@ -267,8 +412,8 @@
             <td>0</td>
             <td>
               {<br />
-              &nbsp;&nbsp;"power": 0.0 .. 1.0 [%],<br />
-              &nbsp;&nbsp;"time": 0 .. 1000 [ms]<br />
+              &nbsp;&nbsp;"power": float <i>[0.01-1.0 %]</i>,<br />
+              &nbsp;&nbsp;"time": int <i>[1-1000 ms]</i><br />
               }
             </td>
           </tr>
