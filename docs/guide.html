@@ -9,15 +9,20 @@
     gtag('config', 'UA-79377017-2');
   </script>
   <title>LabDroid Documentation</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins|Montserrat" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Open Sans', sans-serif;
       background-color: #eee;
-      margin: 0;
     }
 
-    h1,h2,h3,h4 {
-      font-family: 'Poppins', sans-serif;
+    h2 {
+      margin: 16px 0 4px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #5663ac;
     }
 
     header {
@@ -42,6 +47,7 @@
       flex-direction: column;
       width: 200px;
       min-width: 200px;
+      line-height: 1.25em;
     }
 
     section {
@@ -66,15 +72,18 @@
     }
     
     article > div > label {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: bold;
     }
 
     span.type {
       color: #5b6fab;
     }
+
+    table > tbody {
+      vertical-align: top;
+    }
   </style>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -82,14 +91,20 @@
   </header>
   <main>
     <aside>
-      Basics
-      <a href="?page=basics_ide">> IDE</a>
-      Nodes
-      <a href="?page=nodes_script">> Script</a>
-      > Accelerometer<br />
-      > Gyroscope<br />
-      > GPS<br />
-      > WebSocket<br />
+      ### Basics<br />
+      <a href="?page=basics_ide"># IDE</a>
+      <br />### Nodes<br />
+      # Software<br />
+      <a href="?page=nodes_script"># &nbsp;&nbsp;Script</a>
+      # Hardware<br />
+      # &nbsp;&nbsp;Accelerometer<br />
+      # &nbsp;&nbsp;GPS<br />
+      # &nbsp;&nbsp;Gyroscope<br />
+      # &nbsp;&nbsp;Magnetometer<br />
+      <a href="?page=nodes_nfc"># &nbsp;&nbsp;NFC</a>
+      <a href="?page=nodes_vibrator"># &nbsp;&nbsp;Vibrator</a>
+      # Communication<br />
+      # &nbsp;&nbsp;WebSocket<br />
 
     </aside>
     <section id="basics_ide">
@@ -115,21 +130,27 @@
       </article>
       <h2>Next steps</h2>
       <article>
-        Now you are able to start using LabDroid. Further information about the nodes can be founded on this page. Just select the section
-        of your interest on the left side.
+        <p>
+          Now you are able to start using LabDroid. Further information about the nodes can be founded on this page. Just select the section
+          of your interest on the left side.
+        </p>
       </article>
     </section>
+
+
     <section id="nodes_script">
       <h1>Script Node</h1>
       <h2>Basics</h2>
         <article>
-          LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
-          some credits to Ian Bull the founder of J2V8: Great job man! :)<br /><br />
-  
-          With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
-          LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
-          href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
-          For LabDroid I implemented some additional functions which will be explained in the following section.
+          <p>
+            LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
+            some credits to Ian Bull the founder of J2V8: Great job! :)<br /><br />
+    
+            With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
+            LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
+            href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
+            For LabDroid I implemented some additional functions which will be explained in the following section.
+          </p>
         </article>
       <h2>API</h2>
       <article>
@@ -189,6 +210,69 @@
           <label><span class="type">number</span> $getNano()</label>
           <p>Returns the current system time of your phone, in nanoseconds.</p>
         </div>
+      </article>
+    </section>
+
+
+    <section id="nodes_nfc">
+      <h1>NFC Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            NFC is a technologies which allows you to identify an object. Many 
+            plastic cards e.g. library card, public transport card, ..) are 
+            equiped with an RFID tag, which can be read out through this node.
+          </p>
+        </article>
+      <article>
+        <h2>
+          Output
+        </h2>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              A string which contains the RFID tag.<br />
+            </td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+
+    <section id="nodes_vibrator">
+      <h1>Vibrator Node</h1>
+      <h2>Basics</h2>
+        <article>
+          <p>
+            The Vibrator is used to generate a haptic feedback. One of the most 
+            common usage is to notifiy the user about new messages.
+          </p>
+        </article>
+      <article>
+        <h2>
+          Input
+        </h2>
+        <p>
+          This node supports default values. This means that you don't need to 
+          send all parameters to the input. If one or more is missing the mode 
+          will automatically use the default values.
+        </p>
+        <table>
+          <th>Port</th>
+          <th>Object</th>
+          <tr>
+            <td>0</td>
+            <td>
+              {<br />
+              &nbsp;&nbsp;"amplitude": 0.0 .. 1.0 [%],<br />
+              &nbsp;&nbsp;"durationMs": 0 .. X [ms]<br />
+              }
+            </td>
+          </tr>
+        </table>
       </article>
     </section>
   </main>
