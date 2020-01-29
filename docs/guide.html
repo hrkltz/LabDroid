@@ -14,6 +14,9 @@
   <style>
     body {
       background-color: #eee;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
     }
 
     h2 {
@@ -22,35 +25,56 @@
 
     a {
       text-decoration: none;
-      color: #5663ac;
+      color: #e2e2e2;
     }
 
-    header {
-      background-color: #fff;
+    a:target {
+      color: #ffffff;
+    }
+
+    
+    aside {
+      background-color: #43434b;
+      color: #b2b2b2;
       display: flex;
-      flex-direction: row;
-      padding: 5px 10px;
-    }
-
-    header > label {
-      font-size: 22px;
+      flex-direction: column;
+      width: 320px;
+      min-width: 320px;
+      line-height: 1.25em;
+      user-select: none;
     }
 
     main {
       display: flex;
-      padding: 5px 10px;
       flex-direction: row;
     }
 
-    aside {
+
+    header {
+      background-color: #3872a2;
       display: flex;
       flex-direction: column;
-      width: 200px;
-      min-width: 200px;
-      line-height: 1.25em;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      color: #ffffff;
+      flex: 0 0 120px;
     }
 
+    aside > a,
+    aside > label {
+      padding: 3px 10px;
+    }
+    aside > label {
+      margin-top: 10px;
+    }
+
+    aside a:hover {
+      background-color: #ffffff10;
+    }
+
+
     section {
+      overflow-y: auto;
       background-color: #ffffff;
       border: 1px solid #ddd;
       border-radius: 3px;
@@ -86,27 +110,26 @@
   </style>
 </head>
 <body>
-  <header>
-    <label>LabDroid Documentation</label>
-  </header>
+  <aside>
+    <header>
+      <h1>LabDroid</h1>
+      <h2>Documentation</h2>
+    </header>
+    <label>Basics</label>
+    <a id="basics_ide_link" href="?page=basics_ide">IDE</a>
+    <label>Software Nodes</label>
+    <a id="nodes_script_link" href="?page=nodes_script">Script</a>
+    <label>Hardware Nodes</label>
+    <a id="nodes_accelerometer_link" href="?page=nodes_accelerometer">Accelerometer</a>
+    <a id="nodes_gps_link" href="?page=nodes_gps">GPS</a>
+    <a id="nodes_gyroscope_link" href="?page=nodes_gyroscope">Gyroscope</a>
+    <a id="nodes_magnetometer_link" href="?page=nodes_magnetometer">Magnetometer</a>
+    <a id="nodes_nfc_link" href="?page=nodes_nfc">NFC</a>
+    <a id="nodes_vibrator_link" href="?page=nodes_vibrator">Vibrator</a>
+    <label>Communication Nodes</label>
+    <a id="nodes_websocket_link" href="?page=nodes_websocket">WebSocket</a>
+  </aside>
   <main>
-    <aside>
-      ### Basics<br />
-      <a href="?page=basics_ide"># IDE</a>
-      <br />### Nodes<br />
-      # Software<br />
-      <a href="?page=nodes_script"># &nbsp;&nbsp;Script</a>
-      # Hardware<br />
-      <a href="?page=nodes_accelerometer"># &nbsp;&nbsp;Accelerometer</a>
-      <a href="?page=nodes_gps"># &nbsp;&nbsp;GPS</a>
-      <a href="?page=nodes_gyroscope"># &nbsp;&nbsp;Gyroscope</a>
-      <a href="?page=nodes_magnetometer"># &nbsp;&nbsp;Magnetometer</a>
-      <a href="?page=nodes_nfc"># &nbsp;&nbsp;NFC</a>
-      <a href="?page=nodes_vibrator"># &nbsp;&nbsp;Vibrator</a>
-      # Communication<br />
-      # &nbsp;&nbsp;WebSocket<br />
-
-    </aside>
     <section id="basics_ide">
       <h1>IDE</h1>
       <h2>Access</h2>
@@ -420,6 +443,13 @@
         </table>
       </article>
     </section>
+
+
+    <section id="nodes_websocket">
+      <h1>WebSocket Server</h1>
+    </section>
+
+    
   </main>
 </body>
 <script>
@@ -430,5 +460,7 @@
   }
  
   document.getElementById(gPage).style.display = 'unset';
+  document.getElementById(gPage + '_link').style.backgroundColor = '#ffffff';
+  document.getElementById(gPage + '_link').style.color = '#000000';
 </script>
 </html>
