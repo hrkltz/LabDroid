@@ -11,109 +11,134 @@
   <title>LabDroid Documentation</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins|Montserrat" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
+  <link rel="icon" href="LabDroid/favicon.ico" type="image/x-icon" />
   <style>
     body {
-      background-color: #eee;
-      display: flex;
-      flex-direction: row;
       height: 100vh;
+      background-color: #eeeeee;
     }
 
-    h2 {
-      margin: 16px 0 4px 0;
+    body > header {
+      position: fixed;
+      width: 280px;
+      height: 260px;
+      z-index: 1;
+
+      box-sizing: border-box;
+      padding: 10px 5px;
+      background-color: #3872a2;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
-    a {
+    body > header > img {
+      width: 128px;
+      align-self: center;
+    }
+
+    body > header > button {
+      background: unset;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      margin-right: 10px;
+      display: none;
+    }
+
+    body > aside {
+      position: fixed;
+      top: 260px;
+      bottom: 0;
+      width: 280px;
+      z-index: 1;
+      
+      box-sizing: border-box;
+      background-color: #43434b;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25em;
+      color: #b2b2b2;
+    }
+
+    body > aside > a {
       text-decoration: none;
       color: #e2e2e2;
     }
 
-    a:target {
-      color: #ffffff;
+    body > aside > * {
+      padding: 2px 2px;
     }
 
-    
-    aside {
-      background-color: #43434b;
-      color: #b2b2b2;
-      display: flex;
-      flex-direction: column;
-      width: 320px;
-      min-width: 320px;
-      line-height: 1.25em;
-      user-select: none;
-    }
-
-    main {
-      display: flex;
-      flex-direction: row;
-    }
-
-
-    header {
-      background-color: #3872a2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 10px 20px;
-      color: #ffffff;
-      flex: 0 0 120px;
-    }
-
-    aside > a,
-    aside > label {
-      padding: 3px 10px;
-    }
-    aside > label {
+    body > aside > label:not(:first-child) {
       margin-top: 10px;
     }
 
-    aside a:hover {
-      background-color: #ffffff10;
+    body > main {
+      position: absolute;
+      left: 280px;
+      max-width: 720px;
+
+      background-color: #ffffff;
+      box-sizing: border-box;
+      overflow-y: auto;
+      padding: 10px;
     }
 
-
-    section {
-      overflow-y: auto;
-      background-color: #ffffff;
-      border-radius: 3px;
-      padding: 5px;
-      margin-bottom: 5px;
-      max-width: 960px;
-      width: 100%;
+    body > main > section {
       display: none;
     }
 
-    article > div {
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-    }
 
-    article > div:not(:last-of-type) {
-      border-bottom: 1px solid #ddd;
-    }
-    
-    article > div > label {
-      font-size: 20px;
-      font-weight: bold;
-    }
+    @media (max-width: 600px) {
+      body > header {
+        width: 100vw;
+        height: 96px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
 
-    span.type {
-      color: #5b6fab;
-    }
+      body > header > img {
+        display: none;
+      }
 
-    table > tbody {
-      vertical-align: top;
+      body > header > button {
+        display: unset;
+      }
+
+      body > header > h2 {
+        display: none;
+      }
+
+      body > aside {
+        top: 96px;
+        width: 100vw;
+        display: none;
+      }
+
+      body > aside > * {
+        padding: 10px;
+      }
+
+      body > main {
+        top: 96px;
+        left: 0;
+      }
     }
   </style>
 </head>
-<body>
+<body onresize="resize()">
+  <header>
+    <img src="assets/images/logo.png" />
+    <button onclick="toggle()">M</button>
+    <h1>LabDroid</h1>
+    <h2>Documentation</h2>
+  </header>
   <aside>
-    <header>
-      <h1>LabDroid</h1>
-      <h2>Documentation</h2>
-    </header>
     <label>Basics</label>
     <a id="basics_ide_link" href="?page=basics_ide">IDE</a>
     <label>Software Nodes</label>
@@ -132,7 +157,7 @@
     <section id="basics_ide">
       <h1>IDE</h1>
       <h2>Access</h2>
-      <article>
+      <div>
         <div>
           <p>LabDroid is shipped with an inbuild IDE based on web technologies. This allows you to prepare your projects from your PC, MAC or any
           other platform which supports Google Chrome. Of course you can also try to use Firefox or any other browser but at the moment it's
@@ -145,25 +170,25 @@
           </p>
           <img src="assets/images/ide.png" width="100%" />
         </div>
-      </article>
+      </div>
       <h2>Your first project</h2>
-      <article>
+      <div>
 
-      </article>
+      </div>
       <h2>Next steps</h2>
-      <article>
+      <div>
         <p>
           Now you are able to start using LabDroid. Further information about the nodes can be founded on this page. Just select the section
           of your interest on the left side.
         </p>
-      </article>
+      </div>
     </section>
 
 
     <section id="nodes_script">
       <h1>Script Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
             some credits to Ian Bull the founder of J2V8: Great job! :)<br /><br />
@@ -173,9 +198,9 @@
             href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
             For LabDroid I implemented some additional functions which will be explained in the following section.
           </p>
-        </article>
+        </section>
       <h2>API</h2>
-      <article>
+      <section>
           <div>
           <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>)</label>
           <p>Receives an object via the input port from the conected node.</p>
@@ -232,21 +257,21 @@
           <label><span class="type">number</span> $getNano()</label>
           <p>Returns the current system time of your phone, in nanoseconds.</p>
         </div>
-      </article>
+      </section>
     </section>
 
 
     <section id="nodes_nfc">
       <h1>NFC Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             NFC is a technologies which allows you to identify an object. Many 
             plastic cards e.g. library card, public transport card, ..) are 
             equiped with an RFID tag, which can be read out through this node.
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Output
         </h2>
@@ -260,14 +285,14 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
 
     <section id="nodes_accelerometer">
       <h1>Accelerometer Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             The accelerometer reports the acceleration of the device along the 
             three sensor axes. The measured acceleration includes both the 
@@ -277,8 +302,8 @@
             All values are in SI units [m/s^2] and measure the acceleration of 
             the device minus the force of gravity along the 3 sensor axes.
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Output
         </h2>
@@ -296,13 +321,13 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
     <section id="nodes_gps">
       <h1>GPS Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             GPS is one kind of a Global Navigation Satellite System (GNSS). The 
             GPS node can be used to get the current position or speed of the 
@@ -314,8 +339,8 @@
             Note: The first fix can take some time (up to a few minutes if the 
             device is indoor).
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Output
         </h2>
@@ -336,14 +361,14 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
 
     <section id="nodes_gyroscope">
       <h1>Gyroscope Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             The gyroscope reports the rate of rotation of the device around the 
             three sensor axes. Rotation is positive in the counterclockwise 
@@ -352,8 +377,8 @@
           <p>
             All values are in radians per second (rad/s).
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Output
         </h2>
@@ -371,14 +396,14 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
 
     <section id="nodes_magnetometer">
       <h1>Magnetometer Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             The magnetometer is used to measure the ambient magnetic field. The 
             measurement is reported in the x, y and z fields.
@@ -386,8 +411,8 @@
           <p>
             All values are in micro-Tesla (uT).
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Output
         </h2>
@@ -405,20 +430,20 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
 
     <section id="nodes_vibrator">
       <h1>Vibrator Node</h1>
       <h2>Basics</h2>
-        <article>
+        <section>
           <p>
             The Vibrator is used to generate a haptic feedback. One of the most 
             common usage is to notifiy the user about new messages.
           </p>
-        </article>
-      <article>
+        </section>
+      <section>
         <h2>
           Input
         </h2>
@@ -440,7 +465,7 @@
             </td>
           </tr>
         </table>
-      </article>
+      </section>
     </section>
 
 
@@ -448,10 +473,12 @@
       <h1>WebSocket Server</h1>
     </section>
 
-    
+  </main>
   </main>
 </body>
 <script>
+  const aside = document.getElementsByTagName('aside')[0];
+
   var gPage = location.search.split('page=')[1];
 
   if (!gPage) {
@@ -461,5 +488,28 @@
   document.getElementById(gPage).style.display = 'unset';
   document.getElementById(gPage + '_link').style.backgroundColor = '#ffffff';
   document.getElementById(gPage + '_link').style.color = '#000000';
+
+
+  function toggle() {
+    console.log(aside.style.display)
+    if (aside.style.display == 'flex') {
+      aside.style.display = 'none';
+      document.body.style.overflow = 'unset';
+    } else {
+      aside.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+
+  function resize() {
+    if (document.body.clientWidth > 600) {
+      aside.style.display = 'flex';
+    } else {
+      aside.style.display = 'none';
+    }
+
+    document.body.style.overflow = 'unset';
+  }
 </script>
 </html>
