@@ -18,10 +18,23 @@
       background-color: #eeeeee;
     }
 
-    body > header {
+    p {
+      text-align: justify;
+    }
+
+    body > aside {
       position: fixed;
       width: 280px;
-      height: 260px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      z-index: 1;
+    }
+
+    body > aside > header {
+      width: 100%;
+      flex: 0 0 260px;
       z-index: 1;
 
       box-sizing: border-box;
@@ -31,14 +44,15 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      align-items: center;
     }
 
-    body > header > img {
+    body > aside > header > img {
       width: 128px;
       align-self: center;
     }
 
-    body > header > button {
+    body > aside > header > button {
       background: unset;
       border: 1px solid #ffffff;
       color: #ffffff;
@@ -47,39 +61,42 @@
       cursor: pointer;
       margin-right: 10px;
       display: none;
+      position: absolute;
+      left: 20px;
+      top: calc((92px - 48px) / 2);
     }
 
-    body > aside {
-      position: fixed;
-      top: 260px;
-      bottom: 0;
-      width: 280px;
+    body > aside > main {
+      flex: 1;
+      width: 100%;
       z-index: 1;
       
+      overflow-y: auto;
       box-sizing: border-box;
       background-color: #43434b;
       display: flex;
       flex-direction: column;
       line-height: 1.25em;
-      color: #b2b2b2;
+      color: #d2d2d2;
     }
 
-    body > aside > a {
+    body > aside > main > a {
       text-decoration: none;
-      color: #e2e2e2;
+      color: #ffffff;
     }
 
-    body > aside > * {
-      padding: 2px 2px;
+    body > aside > main > * {
+      padding: 2px 10px;
     }
 
-    body > aside > label:not(:first-child) {
+    body > aside > main > label:not(:first-child) {
       margin-top: 10px;
     }
 
     body > main {
       position: absolute;
       left: 280px;
+      right: 0;
       max-width: 720px;
 
       background-color: #ffffff;
@@ -93,87 +110,118 @@
     }
 
 
-    @media (max-width: 600px) {
-      body > header {
-        width: 100vw;
-        height: 96px;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+    @media (max-height: 600px) {
+      body > aside > header {
+        flex: 0 0 120px;
       }
 
-      body > header > img {
+      body > aside > header > img {
+        display: none;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+      body > aside {
+        width: 100%;
+      }
+
+      body > aside > header {
+        flex: 0 0 92px;
+      }
+
+      body > aside > header > img,
+      body > aside > header > h2 {
         display: none;
       }
 
-      body > header > button {
+      body > aside > header > button {
         display: unset;
       }
 
-      body > header > h2 {
+      body > aside > main {
         display: none;
-      }
-
-      body > aside {
-        top: 96px;
-        width: 100vw;
-        display: none;
-      }
-
-      body > aside > * {
-        padding: 10px;
       }
 
       body > main {
-        top: 96px;
+        top: 92px;
         left: 0;
+      }
+    }
+
+    @media (min-width: 600px) {
+      body > aside > main {
+        display: flex !important;
       }
     }
   </style>
 </head>
 <body onresize="resize()">
-  <header>
-    <img src="assets/images/logo.png" />
-    <button onclick="toggle()">M</button>
-    <h1>LabDroid</h1>
-    <h2>Documentation</h2>
-  </header>
   <aside>
-    <label>Basics</label>
-    <a id="basics_ide_link" href="?page=basics_ide">IDE</a>
-    <label>Software Nodes</label>
-    <a id="nodes_script_link" href="?page=nodes_script">Script</a>
-    <label>Hardware Nodes</label>
-    <a id="nodes_accelerometer_link" href="?page=nodes_accelerometer">Accelerometer</a>
-    <a id="nodes_gps_link" href="?page=nodes_gps">GPS</a>
-    <a id="nodes_gyroscope_link" href="?page=nodes_gyroscope">Gyroscope</a>
-    <a id="nodes_magnetometer_link" href="?page=nodes_magnetometer">Magnetometer</a>
-    <a id="nodes_nfc_link" href="?page=nodes_nfc">NFC</a>
-    <a id="nodes_vibrator_link" href="?page=nodes_vibrator">Vibrator</a>
-    <label>Communication Nodes</label>
-    <a id="nodes_websocket_link" href="?page=nodes_websocket">WebSocket</a>
+    <header>
+      <img src="assets/images/logo.png" />
+      <button onclick="toggle()">M</button>
+      <h1>LabDroid</h1>
+      <h2>Documentation</h2>
+    </header>
+    <main id="nav">
+      <label>Basics</label>
+      <a id="basics_start_link" href="?page=basics_start">Getting Started</a>
+      <a id="basics_ide_link" href="?page=basics_ide">IDE</a>
+      <label>Software Nodes</label>
+      <a id="nodes_script_link" href="?page=nodes_script">Script</a>
+      <label>Hardware Nodes</label>
+      <a id="nodes_accelerometer_link" href="?page=nodes_accelerometer">Accelerometer</a>
+      <a id="nodes_gps_link" href="?page=nodes_gps">GPS</a>
+      <a id="nodes_gyroscope_link" href="?page=nodes_gyroscope">Gyroscope</a>
+      <a id="nodes_magnetometer_link" href="?page=nodes_magnetometer">Magnetometer</a>
+      <a id="nodes_nfc_link" href="?page=nodes_nfc">NFC</a>
+      <a id="nodes_vibrator_link" href="?page=nodes_vibrator">Vibrator</a>
+      <label>Communication Nodes</label>
+      <a id="nodes_bluetooth_client_link" href="?page=nodes_bluetooth_client">BluetoothClient</a>
+      <a id="nodes_http_client_link" href="?page=nodes_http_client">HTTP Client</a>
+      <a id="nodes_websocket_server_link" href="?page=nodes_websocket_server">WebSocket Server</a>
+    </main>
   </aside>
   <main>
-    <section id="basics_ide">
-      <h1>IDE</h1>
-      <h2>Access</h2>
+    <section id="basics_start">
+      <h1>Getting Started</h1>
       <div>
         <div>
-          <p>LabDroid is shipped with an inbuild IDE based on web technologies. This allows you to prepare your projects from your PC, MAC or any
-          other platform which supports Google Chrome. Of course you can also try to use Firefox or any other browser but at the moment it's
-          impossible for me to check all browsers. If possible please use the latest version of Google Chrome or Chromium.</p>
-          <p>To get started you first need to activate the LabDroid service through the toggle in the top right corner.</p>
-          <img src="assets/images/activate_service.jpg" width="75%" />
           <p>
-          After this you should get a notification which shows your the URL (http://PHONE_IP:8080) to open the IDE. Just open this page on 
-          another device which is in the same network.
+            LabDroid is shipped with an inbuild IDE based on web technologies. This allows you to prepare your projects from your PC, MAC 
+            or any other platform which supports Google Chrome. You can also try to use Firefox or any other browser but at the moment the 
+            only official supported browser is Chrome/Chromeium.
           </p>
-          <img src="assets/images/ide.png" width="100%" />
+          <p>
+            After you launch LabDroid a notification appears which shows your the URL (http://PHONE_IP:8080) to open the IDE. Just open 
+            this page on another device which is connected to the same network. After a short loading time you should see the IDE.
+          </p>
         </div>
       </div>
-      <h2>Your first project</h2>
-      <div>
+    </section>
 
+
+    <section id="basics_ide">
+      <h1>IDE</h1>
+      <h2>Project Overview</h2>
+      <div>
+        <p>
+          The first screen allows you to choose your project or create a new one:
+        </p>
+        <img src="assets/images/ide.png" width="100%" />
+      </div>
+      <h2>Workspace</h2>
+      <div>
+        <p>
+          If you open a project you will see the workspace where you can place nodes to implement your idea.
+        </p>
+        <img src="assets/images/ide.png" width="100%" />
+        <p>
+          To place a node just double click with the left mouse into the workspace. A dialog will appear and show your the avaible nodes. 
+          After you placed the node you can move it around by long pressing into the node center. To connect two nodes you just have to 
+          long press on an output port and drag the line into a input port.
+        </p>
       </div>
       <h2>Next steps</h2>
       <div>
@@ -191,7 +239,7 @@
         <section>
           <p>
             LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
-            some credits to Ian Bull the founder of J2V8: Great job! :)<br /><br />
+            some credits to Ian Bull the founder of <a href="https://github.com/eclipsesource/J2V8" target="_blank">J2V8</a>: Great job! :)<br /><br />
     
             With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
             LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
@@ -477,7 +525,7 @@
   </main>
 </body>
 <script>
-  const aside = document.getElementsByTagName('aside')[0];
+  const nav = document.getElementById('nav');
 
   var gPage = location.search.split('page=')[1];
 
@@ -491,18 +539,17 @@
 
 
   function toggle() {
-    console.log(aside.style.display)
-    if (aside.style.display == 'flex') {
-      aside.style.display = 'none';
-      document.body.style.overflow = 'unset';
+    if (nav.style.display == 'flex') {
+      nav.style.display = 'none';
+      //document.body.style.overflow = 'unset';
     } else {
-      aside.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      nav.style.display = 'flex';
+      //document.body.style.overflow = 'hidden';
     }
   }
 
 
-  function resize() {
+  /*function resize() {
     if (document.body.clientWidth > 600) {
       aside.style.display = 'flex';
     } else {
@@ -510,6 +557,6 @@
     }
 
     document.body.style.overflow = 'unset';
-  }
+  }*/
 </script>
 </html>
