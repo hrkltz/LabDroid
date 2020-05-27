@@ -56,8 +56,12 @@ h4 {
   /* Style the tab content */
   .tabcontent {
     font-family: monospace;
-    display: none;
-    padding: 6px 12px;
+    padding: 2px 4px;
     border: 1px solid #ccc;
     border-top: none;
+    display: none;
+  }
+
+  .tabcontent > p {
+    margin: unset;
   }

@@ -218,11 +218,14 @@
         <p>
           If you open a project you will see the workspace where you can place nodes to implement your idea.
         </p>
-        <img src="assets/images/ide.png" width="100%" />
+        <img src="assets/images/workspace.png" width="100%" />
         <p>
           To place a node just double click with the left mouse into the workspace. A dialog will appear and show your the avaible nodes. 
           After you placed the node you can move it around by long pressing into the node center. To connect two nodes you just have to 
-          long press on an output port and drag the line into a input port.
+          long press on an output port and drag the line into a input port.<br />
+          <br />
+          For all interaction options, you will see a help window in the lower left corner. If you move the mouse over a node or port, 
+          this window shows you all the options.
         </p>
       </div>
       <h2>Next steps</h2>
@@ -237,321 +240,468 @@
 
     <section id="nodes_script">
       <h1>Script Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
-            some credits to Ian Bull the founder of <a href="https://github.com/eclipsesource/J2V8" target="_blank">J2V8</a>: Great job! :)<br /><br />
-    
-            With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
-            LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
-            href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
-            For LabDroid I implemented some additional functions which will be explained in the following section.
-          </p>
-        </section>
+      <p>
+        LabDroid provides a script node which is powered by V8 from Google. Before we start with the technical things I would like to give 
+        some credits to Ian Bull the founder of <a href="https://github.com/eclipsesource/J2V8" target="_blank">J2V8</a>: Great job! :)<br /><br />
+
+        With the help of J2V8 you get a full-size JavaScript interpreter which is even optimized for Android. Beside of the API extensions 
+        LabDroid offers you can get use of all inbuild namespaces like Date, JSON, Math, RegExp and much <a 
+        href="https://www.w3schools.com/js/" target="_blank">more</a>.<br /><br />
+        For LabDroid I implemented some additional functions which will be explained in the following section.
+      </p>
       <h2>API</h2>
-      <section>
-          <div>
-          <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>)</label>
-          <p>Receives an object via the input port from the conected node.</p>
-          <table>
-            <th>
-              Parameters
-            </th>
-            <tr>
-              <td>port</td>
-              <td>The number to address the wanted input port. Starting from 0 for the first one.</td>
-            </tr>
-          </table>
-          <table>
-            <th>
-              Returns
-            </th>
-            <tr>
-              <td>any</td>
-              <td>The object which was received through the corresponding input port.</td>
-            </tr>
-          </table>
-        </div>
-        <div>
-          <label><span class="type">void</span> $out(port: <span class="type">number</span>, object: <span class="type">any</span>)</label>
-          <p>Send an object via the output port to the connected node.</p>
-          <table>
-            <th>
-              Parameters
-            </th>
-            <tr>
-              <td>port</td>
-              <td>The number to address the wanted output port. Starting from 0 for the first one.</td>
-            </tr>
-            <tr>
-              <td>object</td>
-              <td>The data you like to send out. It's possobile to place any kind of data (e.g. string, number, array or a object).</td>
-            </tr>
-          </table>
-        </div>
-        <div>
-          <label><span class="type">void</span> $sleep(time: <span class="type">number</span>)</label>
-          <p>Enables you to pause the script node for some time.</p>
-          <table>
-            <th>
-              Parameters
-            </th>
-            <tr>
-              <td>time</td>
-              <td>A number to force the script node to sleep/wait for the desired time (milliseconds).</td>
-            </tr>
-          </table>
-        </div>
-        <div>
-          <label><span class="type">number</span> $getNano()</label>
-          <p>Returns the current system time of your phone, in nanoseconds.</p>
-        </div>
-      </section>
+      <div>
+        <label><span class="type">any</span> <b>$in</b>(port: <span class="type">number</span>)</label>
+        <p>Receives an object via the input port from the conected node.</p>
+        <table>
+          <th>
+            Parameters
+          </th>
+          <tr>
+            <td>port</td>
+            <td>The number to address the wanted input port. Starting from 0 for the first one.</td>
+          </tr>
+        </table>
+        <table>
+          <th>
+            Returns
+          </th>
+          <tr>
+            <td>any</td>
+            <td>The object which was received through the corresponding input port.</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <label><span class="type">void</span> $out(port: <span class="type">number</span>, object: <span class="type">any</span>)</label>
+        <p>Send an object via the output port to the connected node.</p>
+        <table>
+          <th>
+            Parameters
+          </th>
+          <tr>
+            <td>port</td>
+            <td>The number to address the wanted output port. Starting from 0 for the first one.</td>
+          </tr>
+          <tr>
+            <td>object</td>
+            <td>The data you like to send out. It's possobile to place any kind of data (e.g. string, number, array or a object).</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <label><span class="type">void</span> $sleep(time: <span class="type">number</span>)</label>
+        <p>Enables you to pause the script node for some time.</p>
+        <table>
+          <th>
+            Parameters
+          </th>
+          <tr>
+            <td>time</td>
+            <td>A number to force the script node to sleep/wait for the desired time (milliseconds).</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <label><span class="type">number</span> $getNano()</label>
+        <p>Returns the current system time of your phone, in nanoseconds.</p>
+      </div>
     </section>
 
 
     <section id="components_nfc">
-      <h1>NFC Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            NFC is a technologies which allows you to identify an object. Many 
-            plastic cards e.g. library card, public transport card, ..) are 
-            equiped with an RFID tag, which can be read out through this node.
-          </p>
-        </section>
-      <section>
-        <h2>
-          Output
-        </h2>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              A string which contains the RFID tag.<br />
-            </td>
-          </tr>
-        </table>
-      </section>
+      <h1>NFC</h1>
+      <p>
+        NFC is a technologies which allows you to identify an object. Many 
+        plastic cards e.g. library card, public transport card, ..) are 
+        equiped with an RFID tag, which can be read out through this node.
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_nfc-i-Status"
+        class="active tablinks tablinks-components_nfc-i"
+        onclick="openTab(event, 'components_nfc', 'i', 'Status')">Status</button>
+      </div>
+      <div
+      id="tabcontent-components_nfc-i-Status"
+      class="tabcontent tabcontent-components_nfc-i"
+      style="display: block;">
+        <p>
+          let on = {}<br />
+          $out(<i>port</i>, on)<br />
+          <br />
+          let off = 0<br />
+          $out(<i>port</i>, off)
+        </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_nfc-o-Data"
+        class="active tablinks tablinks-components_nfc-o"
+        onclick="openTab(event, 'components_nfc', 'o', 'Data')">Data</button>
+      </div>
+      <div
+      id="tabcontent-components_nfc-o-Data"
+      class="tabcontent tabcontent-components_nfc-o"
+      style="display: block;">
+        <p>
+          let data = $in(<i>port</i>)<br />
+          data // string (RFID tag)
+        </p>
+      </div>
     </section>
 
 
     <section id="components_accelerometer">
-      <h1>Accelerometer Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            The accelerometer reports the acceleration of the device along the 
-            three sensor axes. The measured acceleration includes both the 
-            physical acceleration (change of velocity) and the gravity.
-          </p>
-          <p>
-            All values are in SI units [m/s^2] and measure the acceleration of 
-            the device minus the force of gravity along the 3 sensor axes.
-          </p>
-        </section>
-      <section>
-        <h2>
-          Channels
-        </h2>
-        <h3>
-          Inputs
-        </h3>
-        <div class="tab">
-          <button 
-          id="tablinks-components_accelerometer-i-Status"
-          class="tablinks tablinks-components_accelerometer-i"
-          onclick="openTab(event, 'components_accelerometer', 'i', 'Status')">Status</button>
-        </div>
-        <div
-        id="tabcontent-components_accelerometer-i-Status"
-        class="tabcontent tabcontent-components_accelerometer-i">
-          <p>let on = {}<br />$out(<i>port</i>, on)<br /><br />let off = 0<br />$out(<i>port</i>, off)</p>
-        </div>
-        <h3>
-          Outputs
-        </h3>
-        <div class="tab">
-          <button 
-          id="tablinks-components_accelerometer-o-Data"
-          class="tablinks tablinks-components_accelerometer-o"
-          onclick="openTab(event, 'components_accelerometer', 'o', 'Data')">Data</button>
-        </div>
-        <div
-        id="tabcontent-components_accelerometer-o-Data"
-        class="tabcontent tabcontent-components_accelerometer-o">
-          <p>let data = $in(<i>port</i>)<br />data.x // float [m/s^2]<br />data.y // float [m/s^2]<br />data.z // float [m/s^2]</p>
-        </div>
-      </section>
+      <h1>Accelerometer</h1>
+      <p>
+        The accelerometer reports the acceleration of the device along the 
+        three sensor axes. The measured acceleration includes both the 
+        physical acceleration (change of velocity) and the gravity.<br />
+        <br />
+        All values are in SI units [m/s^2] and measure the acceleration of 
+        the device minus the force of gravity along the 3 sensor axes.
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_accelerometer-i-Status"
+        class="active tablinks tablinks-components_accelerometer-i"
+        onclick="openTab(event, 'components_accelerometer', 'i', 'Status')">Status</button>
+      </div>
+      <div
+      id="tabcontent-components_accelerometer-i-Status"
+      class="tabcontent tabcontent-components_accelerometer-i"
+      style="display: block;">
+        <p>
+          let on = {}<br />
+          $out(<i>port</i>, on)<br />
+          <br />
+          let off = 0<br />
+          $out(<i>port</i>, off)
+        </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_accelerometer-o-Data"
+        class="active tablinks tablinks-components_accelerometer-o"
+        onclick="openTab(event, 'components_accelerometer', 'o', 'Data')">Data</button>
+      </div>
+      <div
+      id="tabcontent-components_accelerometer-o-Data"
+      class="tabcontent tabcontent-components_accelerometer-o"
+      style="display: block;">
+        <p>
+          let data = $in(<i>port</i>)<br />
+          data.x // float [m/s^2]<br />
+          data.y // float [m/s^2]<br />
+          data.z // float [m/s^2]
+        </p>
+      </div>
     </section>
 
     <section id="components_gps">
-      <h1>GPS Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            GPS is one kind of a Global Navigation Satellite System (GNSS). The 
-            GPS node can be used to get the current position or speed of the 
-            device. Once the module collects enough satellite data to calculate 
-            an accurate position, it has a valid location (a fix ) that it can 
-            report.
-          </p>
-          <p>
-            Note: The first fix can take some time (up to a few minutes if the 
-            device is indoor).
-          </p>
-        </section>
-      <section>
-        <h2>
-          Output
-        </h2>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              {<br />
-              &nbsp;&nbsp;"accuracy": float,<br />
-              &nbsp;&nbsp;"altitude": float <i>[m]</i>,<br />
-              &nbsp;&nbsp;"bearing": float <i>[deg]</i><br />
-              &nbsp;&nbsp;"latitude": float<br />
-              &nbsp;&nbsp;"longitude": float<br />
-              &nbsp;&nbsp;"speed": float <i>[m/s]</i><br />
-              }
-            </td>
-          </tr>
-        </table>
-      </section>
+      <h1>GPS</h1>
+      <p>
+        GPS is one kind of a Global Navigation Satellite System (GNSS). The 
+        GPS node can be used to get the current position or speed of the 
+        device. Once the module collects enough satellite data to calculate 
+        an accurate position, it has a valid location (a fix ) that it can 
+        report.<br />
+        <br />
+        Note: The first fix can take some time (up to a few minutes if the 
+        device is indoor).
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_gps-i-Status"
+        class="active tablinks tablinks-components_gps-i"
+        onclick="openTab(event, 'components_gps', 'i', 'Status')">Status</button>
+      </div>
+      <div
+      id="tabcontent-components_gps-i-Status"
+      class="tabcontent tabcontent-components_gps-i"
+      style="display: block;">
+        <p>
+          let on = {}<br />
+          $out(<i>port</i>, on)<br />
+          <br />
+          let off = 0<br />
+          $out(<i>port</i>, off)
+        </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_gps-o-Data"
+        class="active tablinks tablinks-components_gps-o"
+        onclick="openTab(event, 'components_gps', 'o', 'Data')">Data</button>
+      </div>
+      <div
+      id="tabcontent-components_gps-o-Data"
+      class="tabcontent tabcontent-components_gps-o"
+      style="display: block;">
+        <p>
+          let data = $in(<i>port</i>)<br />
+          data.accuracy // float []<br />
+          data.altitude // float [m]<br />
+          data.bearing // float [deg]<br />
+          data.latitude // float []<br />
+          data.longitude // float []<br />
+          data.speed // float [m/s]
+        </p>
+      </div>
     </section>
 
 
     <section id="components_gyroscope">
-      <h1>Gyroscope Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            The gyroscope reports the rate of rotation of the device around the 
-            three sensor axes. Rotation is positive in the counterclockwise 
-            direction (right-hand rule).
-          </p>
-          <p>
-            All values are in radians per second (rad/s).
-          </p>
-        </section>
-      <section>
-        <h2>
-          Channels
-        </h2>
-        <h3>
-          Inputs
-        </h3>
-        <div class="tab">
-          <button 
-          id="tablinks-components_gyroscope-i-Status"
-          class="tablinks tablinks-components_gyroscope-i"
-          onclick="openTab(event, 'components_gyroscope', 'i', 'Status')">Status</button>
-        </div>
-        <div
-        id="tabcontent-components_gyroscope-i-Status"
-        class="tabcontent tabcontent-components_gyroscope-i">
-          <p>let on = {<br />&nbsp;'type': 'raw' | 'calibrated'<br />}<br />$out(<i>port</i>, on)<br /><br />let off = 0<br />$out(<i>port</i>, off)</p>
-        </div>
-        <h3>
-          Outputs
-        </h3>
-        <div class="tab">
-          <button 
-          id="tablinks-components_gyroscope-o-Data"
-          class="tablinks tablinks-components_gyroscope-o"
-          onclick="openTab(event, 'components_gyroscope', 'o', 'Data')">Data</button>
-        </div>
-        <div
-        id="tabcontent-components_gyroscope-o-Data"
-        class="tabcontent tabcontent-components_gyroscope-o">
-          <p>let data = $in(<i>port</i>)<br />data.x // float [rad/s]<br />data.y // float [rad/s]<br />data.z // float [rad/s]</p>
-        </div>
-      </section>
+      <h1>Gyroscope</h1>
+      <p>
+        The Gyroscope reports the rate of rotation of the device around the 
+        three sensor axes. Rotation is positive in the counterclockwise 
+        direction (right-hand rule).<br />
+        <br />
+        All values are in radians per second (rad/s).
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_gyroscope-i-Status"
+        class="active tablinks tablinks-components_gyroscope-i"
+        onclick="openTab(event, 'components_gyroscope', 'i', 'Status')">Status</button>
+      </div>
+      <div
+      id="tabcontent-components_gyroscope-i-Status"
+      class="tabcontent tabcontent-components_gyroscope-i"
+      style="display: block;">
+        <p>
+          let on = {<br />
+          &nbsp;'type': 'raw' | 'calibrated'<br />
+        }<br />
+        $out(<i>port</i>, on)<br />
+        <br />
+        let off = 0<br />
+        $out(<i>port</i>, off)
+      </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_gyroscope-o-Data"
+        class="active tablinks tablinks-components_gyroscope-o"
+        onclick="openTab(event, 'components_gyroscope', 'o', 'Data')">Data</button>
+      </div>
+      <div
+      id="tabcontent-components_gyroscope-o-Data"
+      class="tabcontent tabcontent-components_gyroscope-o"
+      style="display: block;">
+        <p>
+          let data = $in(<i>port</i>)<br />
+          data.x // float [rad/s]<br />
+          data.y // float [rad/s]<br />
+          data.z // float [rad/s]
+        </p>
+      </div>
     </section>
 
 
     <section id="components_magnetometer">
-      <h1>Magnetometer Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            The magnetometer is used to measure the ambient magnetic field. The 
-            measurement is reported in the x, y and z fields.
-          </p>
-          <p>
-            All values are in micro-Tesla (uT).
-          </p>
-        </section>
-      <section>
-        <h2>
-          Output
-        </h2>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              {<br />
-              &nbsp;&nbsp;"x": float <i>[uT]</i>,<br />
-              &nbsp;&nbsp;"y": float <i>[uT]</i>,<br />
-              &nbsp;&nbsp;"z": float <i>[uT]</i><br />
-              }
-            </td>
-          </tr>
-        </table>
-      </section>
+      <h1>Magnetometer</h1>
+      <p>
+        The magnetometer is used to measure the ambient magnetic field. The 
+        measurement is reported in the x, y and z fields.<br />
+        <br />
+        All values are in micro-Tesla (uT).
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_magnetometer-i-Status"
+        class="active tablinks tablinks-components_magnetometer-i"
+        onclick="openTab(event, 'components_magnetometer', 'i', 'Status')">Status</button>
+      </div>
+      <div
+      id="tabcontent-components_magnetometer-i-Status"
+      class="tabcontent tabcontent-components_magnetometer-i"
+      style="display: block;">
+        <p>
+          let on = {}<br />
+          $out(<i>port</i>, on)<br />
+          <br />
+          let off = 0<br />
+          $out(<i>port</i>, off)
+        </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_magnetometer-o-Data"
+        class="active tablinks tablinks-components_magnetometer-o"
+        onclick="openTab(event, 'components_magnetometer', 'o', 'Data')">Data</button>
+      </div>
+      <div
+      id="tabcontent-components_magnetometer-o-Data"
+      class="tabcontent tabcontent-components_magnetometer-o"
+      style="display: block;">
+        <p>
+          let data = $in(<i>port</i>)<br />
+          data.x // float [uT]<br />
+          data.y // float [uT]<br />
+          data.z // float [uT]
+        </p>
+      </div>
     </section>
 
 
     <section id="components_vibrator">
-      <h1>Vibrator Node</h1>
-      <h2>Basics</h2>
-        <section>
-          <p>
-            The Vibrator is used to generate a haptic feedback. One of the most 
-            common usage is to notifiy the user about new messages.
-          </p>
-        </section>
+      <h1>Vibrator</h1>
       <section>
-        <h2>
-          Input
-        </h2>
         <p>
-          This node supports default values. This means that you don't need to 
-          send all parameters to the input. If one or more is missing the mode 
-          will automatically use the default values.
+          The Vibrator is used to generate a haptic feedback. One of the most 
+          common usage is to notifiy the user about new messages.
         </p>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              {<br />
-              &nbsp;&nbsp;"power": float <i>[0.01-1.0 %]</i>,<br />
-              &nbsp;&nbsp;"time": int <i>[1-1000 ms]</i><br />
-              }
-            </td>
-          </tr>
-        </table>
+      </section>
+      <h2>Inputs</h2>
+      <section>
+        <div class="tab">
+          <button 
+          id="tablinks-components_vibrator-i-Status"
+          class="active tablinks tablinks-components_vibrator-i"
+          onclick="openTab(event, 'components_vibrator', 'i', 'Status')">Status</button>
+        </div>
+        <div
+        id="tabcontent-components_vibrator-i-Status"
+        class="tabcontent tabcontent-components_vibrator-i"
+        style="display: block;">
+          <p>
+            let on = {<br />
+            &nbsp;'power': 0.01 .. 1.0, // float [%]<br />
+            &nbsp;'time': 1 .. 1000 // int [ms]<br />
+            }<br />
+            $out(<i>port</i>, on)<br />
+            <br />
+            let off = 0<br />
+            $out(<i>port</i>, off)
+          </p>
+        </div>
       </section>
     </section>
 
 
-    <section id="components_websocket">
-      <h1>WebSocket Server</h1>
+    <section id="components_bluetooth_client">
+      <h1>Bluetooth (Client)</h1>
+      <p></p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_bluetooth_client-i-Status"
+        class="active tablinks tablinks-components_bluetooth_client-i"
+        onclick="openTab(event, 'components_bluetooth_client', 'i', 'Status')">Status</button>
+        <button 
+        id="tablinks-components_bluetooth-i-Send"
+        class="tablinks tablinks-components_bluetooth_client-i"
+        onclick="openTab(event, 'components_bluetooth_client', 'i', 'Send')">Send</button>
+      </div>
+      <div
+      id="tabcontent-components_bluetooth_client-i-Status"
+      class="tabcontent tabcontent-components_bluetooth_client-i"
+      style="display: block;">
+      <p>
+        let on = {<br />
+        &nbsp;'mac': 'AA:BB:CC:DD:EE:FF', // string [a valid Bluetooth-MAC]<br />
+        &nbsp;'bufferSize': 8 .. 512, // int [how many bytes one frame can contain]<br />
+        &nbsp;'terminator': '' | '\n' | '\r\n' // string [frame end character]<br />
+        }<br />
+        $out(<i>port</i>, on)<br />
+        <br />
+        let off = 0<br />
+        $out(<i>port</i>, off)
+      </p>
+      </div>
+      <div
+      id="tabcontent-components_bluetooth_client-i-Send"
+      class="tabcontent tabcontent-components_bluetooth_client-i">
+        <p>
+          let message = 'Hello World!'<br />
+        $out(<i>port</i>, message)
+      </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_bluetooth-o-Receive"
+        class="active tablinks tablinks-components_bluetooth-o"
+        onclick="openTab(event, 'components_bluetooth', 'o', 'Receive')">Receive</button>
+      </div>
+      <div
+      id="tabcontent-components_bluetooth-o-Receive"
+      class="tabcontent tabcontent-components_bluetooth-o"
+      style="display: block;">
+        <p>
+          let message = $in(<i>port</i>)<br />
+          $log(message)
+        </p>
+      </div>
     </section>
 
-  </main>
+
+    <section id="components_websocket_server">
+      <h1>WebSocket (Server)</h1>
+      <p>
+        A WebSocket can be used to stream data between LabDroid and any other network connected device which supports this technology.
+      </p>
+      <h2>Inputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_websocket-i-Status"
+        class="active tablinks tablinks-components_websocket-i"
+        onclick="openTab(event, 'components_websocket', 'i', 'Status')">Status</button>
+        <button 
+        id="tablinks-components_websocket-i-Send"
+        class="tablinks tablinks-components_websocket-i"
+        onclick="openTab(event, 'components_websocket', 'i', 'Send')">Send</button>
+      </div>
+      <div
+      id="tabcontent-components_websocket-i-Status"
+      class="tabcontent tabcontent-components_websocket-i"
+      style="display: block;">
+      <p>
+        let on = {}<br />
+        $out(<i>port</i>, on)<br />
+        <br />
+        let off = 0<br />
+        $out(<i>port</i>, off)
+      </p>
+      </div>
+      <div
+      id="tabcontent-components_websocket-i-Send"
+      class="tabcontent tabcontent-components_websocket-i">
+        <p>
+          let message = 'Hello World!'<br />
+        $out(<i>port</i>, message)
+      </p>
+      </div>
+      <h2>Outputs</h2>
+      <div class="tab">
+        <button 
+        id="tablinks-components_websocket-o-Receive"
+        class="active tablinks tablinks-components_websocket-o"
+        onclick="openTab(event, 'components_websocket', 'o', 'Receive')">Receive</button>
+      </div>
+      <div
+      id="tabcontent-components_websocket-o-Receive"
+      class="tabcontent tabcontent-components_websocket-o"
+      style="display: block;">
+        <p>
+          let message = $in(<i>port</i>)<br />
+          $log(message)
+        </p>
+      </div>
+    </section>
   </main>
 </body>
 <script>
