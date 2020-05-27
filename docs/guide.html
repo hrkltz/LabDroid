@@ -97,6 +97,8 @@
       position: absolute;
       left: 280px;
       right: 0;
+      bottom: 0;
+      top: 0;
       max-width: 720px;
 
       background-color: #ffffff;
@@ -168,19 +170,19 @@
       <label>Basics</label>
       <a id="basics_start_link" href="?page=basics_start">Getting Started</a>
       <a id="basics_ide_link" href="?page=basics_ide">IDE</a>
-      <label>Software Nodes</label>
+      <label>Nodes</label>
       <a id="nodes_script_link" href="?page=nodes_script">Script</a>
-      <label>Hardware Nodes</label>
-      <a id="nodes_accelerometer_link" href="?page=nodes_accelerometer">Accelerometer</a>
-      <a id="nodes_gps_link" href="?page=nodes_gps">GPS</a>
-      <a id="nodes_gyroscope_link" href="?page=nodes_gyroscope">Gyroscope</a>
-      <a id="nodes_magnetometer_link" href="?page=nodes_magnetometer">Magnetometer</a>
-      <a id="nodes_nfc_link" href="?page=nodes_nfc">NFC</a>
-      <a id="nodes_vibrator_link" href="?page=nodes_vibrator">Vibrator</a>
-      <label>Communication Nodes</label>
-      <a id="nodes_bluetooth_client_link" href="?page=nodes_bluetooth_client">BluetoothClient</a>
-      <a id="nodes_http_client_link" href="?page=nodes_http_client">HTTP Client</a>
-      <a id="nodes_websocket_server_link" href="?page=nodes_websocket_server">WebSocket Server</a>
+      <label>Hardware Components</label>
+      <a id="components_accelerometer_link" href="?page=components_accelerometer">Accelerometer</a>
+      <a id="components_gps_link" href="?page=components_gps">GPS</a>
+      <a id="components_gyroscope_link" href="?page=components_gyroscope">Gyroscope</a>
+      <a id="components_magnetometer_link" href="?page=components_magnetometer">Magnetometer</a>
+      <a id="components_nfc_link" href="?page=components_nfc">NFC</a>
+      <a id="components_vibrator_link" href="?page=components_vibrator">Vibrator</a>
+      <label>Software Components</label>
+      <label>Communication Components</label>
+      <a id="components_bluetooth_client_link" href="?page=components_bluetooth_client">Bluetooth (Client)</a>
+      <a id="components_websocket_server_link" href="?page=components_websocket_server">WebSocket (Server)</a>
     </main>
   </aside>
   <main>
@@ -309,7 +311,7 @@
     </section>
 
 
-    <section id="nodes_nfc">
+    <section id="components_nfc">
       <h1>NFC Node</h1>
       <h2>Basics</h2>
         <section>
@@ -337,7 +339,7 @@
     </section>
 
 
-    <section id="nodes_accelerometer">
+    <section id="components_accelerometer">
       <h1>Accelerometer Node</h1>
       <h2>Basics</h2>
         <section>
@@ -353,26 +355,40 @@
         </section>
       <section>
         <h2>
-          Output
+          Channels
         </h2>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              {<br />
-              &nbsp;&nbsp;"x": float <i>[m/s^2]</i>,<br />
-              &nbsp;&nbsp;"y": float <i>[m/s^2]</i>,<br />
-              &nbsp;&nbsp;"z": float <i>[m/s^2]</i><br />
-              }
-            </td>
-          </tr>
-        </table>
+        <h3>
+          Inputs
+        </h3>
+        <div class="tab">
+          <button 
+          id="tablinks-components_accelerometer-i-Status"
+          class="tablinks tablinks-components_accelerometer-i"
+          onclick="openTab(event, 'components_accelerometer', 'i', 'Status')">Status</button>
+        </div>
+        <div
+        id="tabcontent-components_accelerometer-i-Status"
+        class="tabcontent tabcontent-components_accelerometer-i">
+          <p>let on = {}<br />$out(<i>port</i>, on)<br /><br />let off = 0<br />$out(<i>port</i>, off)</p>
+        </div>
+        <h3>
+          Outputs
+        </h3>
+        <div class="tab">
+          <button 
+          id="tablinks-components_accelerometer-o-Data"
+          class="tablinks tablinks-components_accelerometer-o"
+          onclick="openTab(event, 'components_accelerometer', 'o', 'Data')">Data</button>
+        </div>
+        <div
+        id="tabcontent-components_accelerometer-o-Data"
+        class="tabcontent tabcontent-components_accelerometer-o">
+          <p>let data = $in(<i>port</i>)<br />data.x // float [m/s^2]<br />data.y // float [m/s^2]<br />data.z // float [m/s^2]</p>
+        </div>
       </section>
     </section>
 
-    <section id="nodes_gps">
+    <section id="components_gps">
       <h1>GPS Node</h1>
       <h2>Basics</h2>
         <section>
@@ -413,7 +429,7 @@
     </section>
 
 
-    <section id="nodes_gyroscope">
+    <section id="components_gyroscope">
       <h1>Gyroscope Node</h1>
       <h2>Basics</h2>
         <section>
@@ -428,27 +444,41 @@
         </section>
       <section>
         <h2>
-          Output
+          Channels
         </h2>
-        <table>
-          <th>Port</th>
-          <th>Object</th>
-          <tr>
-            <td>0</td>
-            <td>
-              {<br />
-              &nbsp;&nbsp;"x": float <i>[rad/s]</i>,<br />
-              &nbsp;&nbsp;"y": float <i>[rad/s]</i>,<br />
-              &nbsp;&nbsp;"z": float <i>[rad/s]</i><br />
-              }
-            </td>
-          </tr>
-        </table>
+        <h3>
+          Inputs
+        </h3>
+        <div class="tab">
+          <button 
+          id="tablinks-components_gyroscope-i-Status"
+          class="tablinks tablinks-components_gyroscope-i"
+          onclick="openTab(event, 'components_gyroscope', 'i', 'Status')">Status</button>
+        </div>
+        <div
+        id="tabcontent-components_gyroscope-i-Status"
+        class="tabcontent tabcontent-components_gyroscope-i">
+          <p>let on = {<br />&nbsp;'type': 'raw' | 'calibrated'<br />}<br />$out(<i>port</i>, on)<br /><br />let off = 0<br />$out(<i>port</i>, off)</p>
+        </div>
+        <h3>
+          Outputs
+        </h3>
+        <div class="tab">
+          <button 
+          id="tablinks-components_gyroscope-o-Data"
+          class="tablinks tablinks-components_gyroscope-o"
+          onclick="openTab(event, 'components_gyroscope', 'o', 'Data')">Data</button>
+        </div>
+        <div
+        id="tabcontent-components_gyroscope-o-Data"
+        class="tabcontent tabcontent-components_gyroscope-o">
+          <p>let data = $in(<i>port</i>)<br />data.x // float [rad/s]<br />data.y // float [rad/s]<br />data.z // float [rad/s]</p>
+        </div>
       </section>
     </section>
 
 
-    <section id="nodes_magnetometer">
+    <section id="components_magnetometer">
       <h1>Magnetometer Node</h1>
       <h2>Basics</h2>
         <section>
@@ -482,7 +512,7 @@
     </section>
 
 
-    <section id="nodes_vibrator">
+    <section id="components_vibrator">
       <h1>Vibrator Node</h1>
       <h2>Basics</h2>
         <section>
@@ -517,7 +547,7 @@
     </section>
 
 
-    <section id="nodes_websocket">
+    <section id="components_websocket">
       <h1>WebSocket Server</h1>
     </section>
 
@@ -548,6 +578,24 @@
     }
   }
 
+
+
+  function openTab(evt, a, b, c) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName(`tabcontent-${a}-${b}`);
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName(`tablinks-${a}-${b}`);
+
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace("active", "");
+    }
+
+    document.getElementById(`tabcontent-${a}-${b}-${c}`).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
   /*function resize() {
     if (document.body.clientWidth > 600) {
