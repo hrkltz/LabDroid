@@ -126,6 +126,7 @@
     @media (max-width: 600px) {
       body > aside {
         width: 100%;
+        height: unset;
       }
 
       body > aside > header {
@@ -148,6 +149,7 @@
       body > main {
         top: 92px;
         left: 0;
+        bottom: unset;
       }
     }
 
@@ -705,6 +707,7 @@
   </main>
 </body>
 <script>
+  const aside = document.getElementsByTagName('aside')[0];
   const nav = document.getElementById('nav');
 
   var gPage = location.search.split('page=')[1];
@@ -721,9 +724,11 @@
   function toggle() {
     if (nav.style.display == 'flex') {
       nav.style.display = 'none';
+      aside.style.height = 'unset';
       //document.body.style.overflow = 'unset';
     } else {
       nav.style.display = 'flex';
+      aside.style.height = '100%';
       //document.body.style.overflow = 'hidden';
     }
   }
