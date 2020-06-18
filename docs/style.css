@@ -65,3 +65,18 @@ h4 {
   .tabcontent > p {
     margin: unset;
   }
+
+  div.code {
+    font-family: monospace;
+    padding: 2px 4px;
+    border: 1px solid #ccc;
+  }
+
+
+  span.type {
+    color: #2b5578;
+  }
+
+  th {
+    text-align: left;
+  }
