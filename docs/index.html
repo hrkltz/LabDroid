@@ -1,7 +1,11 @@
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79377017-2"></script>
+        <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-79377017-2"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -10,47 +14,53 @@
           gtag('config', 'UA-79377017-2');
         </script>
         <title>LabDroid</title>
-        <link href="https://fonts.googleapis.com/css?family=Poppins|Montserrat" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link
+        href="https://fonts.googleapis.com/css?family=Poppins|Montserrat" rel="stylesheet">
+        <link
+        href="style.css"
+        rel="stylesheet">
+        <link
+        rel="icon"
+        href="favicon.ico"
+        type="image/x-icon" />
         <style>
+            html {
+                min-width: 320px;
+            }
+
+
+            a {
+                color: unset;
+                text-decoration: unset;
+                cursor: pointer;
+            }
+
+
             header {
                 position: sticky;
                 width: 100%;
-                background: url(assets/images/header.jpg);
-                background-size: cover;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                box-shadow: inset rgba(0, 0, 0, 0.16) 0px 5px 40px;
-                height: 320px;
-                justify-content: space-between;
-                padding: 80px 0 30px 0;
-                color: #ffffff;
-                text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
-            }
-            
-            
-            header > div {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+                box-shadow: inset rgba(0, 0, 0, 0.16) 0px 5px 40px;
+                padding: 10px 0;
+                font-size: 1.5em;
+                background-color: #2C2C32;
+                color: #fff;
             }
             
-            
-            header > div > div {
+
+            header div {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-            }
-            
-            header a#docu {
-                background-color: #000000;
-                color: #ffffff;
                 padding: 10px;
-                border-radius: 5px;
-                text-decoration: none;
-                font-weight: bold;
+            }
+            header div img#icon {
+                width: 40px;
+            }
+            header div a:not(:hover) {
+                filter: grayscale(100%) opacity(70%);
             }
             
             
@@ -70,8 +80,7 @@
             
             main > article {
                 width: 100%;
-                padding: 60px 0;
-                color: #000000;
+                color: #333;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -80,136 +89,200 @@
             
             main > article > div {
                 flex: 0 1 640px;
+                margin: 40px 20px;
+            }
+
+
+            main > article#promo {
+                
+                background: url(assets/images/header.jpg);
+                background-size: cover;
+            }
+            main > article#promo > div {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            main > article#promo > div > img {
+                width: 80%;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
             }
             
-            
-            main a {
-                color: unset;
-                text-decoration: unset;
-                cursor: pointer;
-                font-weight: bold;
-            }
-            main a:not(:hover) {
-                filter: grayscale(100%) opacity(70%);
-            }
-            main a img {
-                position: relative;
-            }
-            main a:hover img {
-                top: -10px;
-            }
-            main a label {
-                pointer-events: none;
-            }
-            
-            
-            main > article:nth-child(1) > div {
+  
+            main > article#promo > div > div {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-evenly;
                 text-align: center;
             }
-            main > article:nth-child(1) > div > a > div {
+            
+            
+            main > article:nth-child(2) > div {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                text-align: center;
+            }
+            main > article:nth-child(2) > div > a > div {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
-            main > article:nth-child(1) img {
+            main > article:nth-child(2) img {
                 margin-bottom: 10px;
             }
-            main > article:nth-child(2) p {
+            main > article:nth-child(2) a {
+                font-weight: bold;
+            }
+            main > article:nth-child(2) a:not(:hover) {
+                filter: grayscale(100%) opacity(70%);
+            }
+            main > article:nth-child(2) a img {
+                position: relative;
+            }
+            main > article:nth-child(2) a label {
+                pointer-events: none;
+            }
+            main > article:nth-child(2) a:hover img {
+                top: -10px;
+            }
+
+
+            main > article:nth-child(3) p {
                 text-align: left;
                 font-size: 18px;
             }
-            
-            
-            main > article:nth-child(2) {
-                background-color: #5c7dba;
-                color: #ffffff;
+            main > article:nth-child(3) {
                 text-align: center;
             }
-            main > article:nth-child(2) > div > div {
+            main > article:nth-child(3) > div > div {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
             }
-            main > article:nth-child(2) > div > div:not(:last-child) {
+            main > article:nth-child(3) > div > div > h1 {
+                flex: 0 0 80px;
+            }
+            main > article:nth-child(3) > div > div:not(:last-child) {
                 margin-bottom: 20px;
             }
-            main > article:nth-child(2) > div > div > img {
+            main > article:nth-child(3) > div > div > img {
                 margin-right: 20px;
             }
             
             
-            main > article:nth-child(3) > div > div,
             main > article:nth-child(4) > div > div,
-            main > article:nth-child(5) > div > div {
+            main > article:nth-child(5) > div > div,
+            main > article:nth-child(6) > div > div {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
             }
-            main > article:nth-child(3) img,
             main > article:nth-child(4) img,
-            main > article:nth-child(5) img {
+            main > article:nth-child(5) img,
+            main > article:nth-child(6) img {
                 margin-right: 20px;
             }
-            main > article:nth-child(3) p,
             main > article:nth-child(4) p,
-            main > article:nth-child(5) p {
+            main > article:nth-child(5) p,
+            main > article:nth-child(6) p {
                 flex: 1 1 auto;
             }
+
+            main > article:nth-child(3),
+            main > article:nth-child(5) {
+                background-color: #f5f5f5;
+            }
             
-            
-            main > article:nth-child(4) {
-                background-color: #b7ddff13;
+            main > article:nth-child(4),
+            main > article:nth-child(6) {
+                background-color: #fff;
+            }
+
+            @media (max-width: 480px) {
+                main > article > div > div {
+                    flex-direction: column !important;
+                }
+
+
+                main > article#navigation > div {
+                    flex-direction: column;
+                }
+                main > article#navigation > div > a > div {
+                    flex-direction: row;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                }
+
+
+                main > article:nth-child(3) > div > div > h1 {
+                    flex: 0;
+                    margin: 0;
+                }
+
+
+                main h1 {
+                    font-size: 2em;
+                }
             }
         </style>        
     </head>
     <body>
         <header>
             <div>
-                <img src="assets/images/logo.png" width="164" />
-                <div>
-                    <h1>LabDroid</h1>
-                    <h2>Happy Prototyping</h2>
-                </div>
+                <img src="assets/images/logo_symbol.png" />
+                <label>LabDroid</label>
             </div>
             <div>
                 <a
-                href='https://play.google.com/store/apps/details?id=io.github.herrherklotz.chameleon&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
-                target="_blank">
-                    <img
-                    alt='Get it on Google Play'
-                    src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
-                    width="162"/>
-                </a>
-                <a
-                id="docu"
                 href="https://herrherklotz.github.io/LabDroid/guide.html"
-                target="_blank">
-                    Documentation
-                </a>
+                target="_blank">Docs</a>
             </div>
         </header>
         <main>
-            <article>
+            <article
+            id="promo">
                 <div>
-                    <a href="#graphical">
+                    <img
+                    src="assets/images/landing.png" />
+                    <a
+                    href='https://play.google.com/store/apps/details?id=io.github.herrherklotz.chameleon'
+                    target="_blank">
+                        <img
+                        alt='Get it on Google Play'
+                        src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+                        width="162"/>
+                    </a>
+                </div>
+            </article>
+            <article
+            id="navigation">
+                <div>
+                    <a
+                    href="#graphical">
                         <div>
-                            <img src="assets/images/node.svg" width="128" />
-                            <label>Graphical<br />programming</label>
+                            <img
+                            src="assets/images/node.svg"
+                            width="128" />
+                            <label>Graphical</label>
                         </div>
                     </a>
-                    <a href="#js">
+                    <a
+                    href="#js">
                         <div>
-                            <img src="assets/images/js.svg" width="128" />
-                            <label>JavaScript<br />supercharged</label>
+                            <img
+                            src="assets/images/js.svg"
+                            width="128" />
+                            <label>JavaScript</label>
                         </div>
                     </a>
-                    <a href="#remote">
+                    <a
+                    href="#remote">
                         <div>
-                            <img src="assets/images/remote.svg" width="128" />
-                            <label>Remote<br />development</label>
+                            <img
+                            src="assets/images/remote.svg"
+                            width="128" />
+                            <label>Remote</label>
                         </div>
                     </a>
                 </div>
@@ -220,15 +293,15 @@
                         Your benefits
                     </h1>
                     <div>
-                        <img src="assets/images/money.svg" width="64" />
+                        <h1>1.</h1>
                         <p>Don't waste your money. Your phone includes a huge set of high end components which are just waiting to be used.</p>
                     </div>
                     <div>
-                        <img src="assets/images/time.svg" width="64" />
+                        <h1>2.</h1>
                         <p>Invest your time into your project and not the setup. LabDroid gives your direct access to all phone components.</p>
                     </div>
                     <div>
-                        <img src="assets/images/environment.svg" width="64" />
+                        <h1>3.</h1>
                         <p>Avoid additional environment damage. You do not have to order boards from China if your phone is right next to you.</p>
                     </div>
                 </div>
