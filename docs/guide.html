@@ -254,8 +254,30 @@
       <h2>API</h2>
       <h3>Basics</h3>
       <div class="code">
-        <b>$in(port: <span class="type">number</span>): <span class="type">any</span></b>
-        <p>Receives an object via the input port from the connected component or node.</p>
+        <b>$receive(port: <span class="type">number</span>): <span class="type">any</span></b>
+        <p>Receives an object from a stream via the input port.</p>
+        <table>
+          <th>
+            Parameters
+          </th>
+          <tr>
+            <td>port</td>
+            <td>The number to address the wanted input port. Starting from 0 for the first one.</td>
+          </tr>
+          <tr>
+            <th>
+              Returns
+            </th>
+          </tr>
+          <tr>
+            <td>any</td>
+            <td>The received object.</td>
+          </tr>
+        </table>
+      </div>
+      <div class="code">
+        <b>$poll(port: <span class="type">number</span>): <span class="type">any</span></b>
+        <p>Polls an object via the input port. In comparision to the $receive() function this one will be used for static information. You need to connect a corresponding output port in order to use this function.</p>
         <table>
           <th>
             Parameters
