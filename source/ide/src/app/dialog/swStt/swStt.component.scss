@@ -1,0 +1,16 @@
+@import '../general_dialog.component.scss';
+@import "src/color.scss";
+
+:host > form {
+    & > main {
+        display: flex;
+        flex-direction: column;
+        padding: 6px 16px;
+        box-sizing: border-box;
+    
+    
+        & > mat-form-field {
+            margin-bottom: 8px;
+        }
+    }
+}

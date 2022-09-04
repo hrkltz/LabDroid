@@ -1,0 +1,26 @@
+<div>
+    <label>
+        Time
+    </label>
+    <label>
+        Source
+    </label>
+    <label>
+        Message
+    </label>
+</div>
+<ng-container
+*ngFor="let eLog of this.mData | orderBy2: 'timestamp' : 'reverse'">
+    <div
+    [class.error]="eLog.type == 1">
+        <label>
+            {{ eLog.time }}
+        </label>
+        <label>
+            {{ eLog.source }}
+        </label>
+        <label>
+            {{ eLog.message }}
+        </label>
+    </div>
+</ng-container>

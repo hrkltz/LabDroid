@@ -1,0 +1,155 @@
+@import "src/color.scss";
+
+
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+
+
+    & > div#help {
+        z-index: 1;
+        position: absolute;
+        bottom: 16px;
+        left: 24px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 5px;
+        backdrop-filter: blur(5px) brightness(1.05);
+        pointer-events: none;
+
+        p {
+            margin: unset;
+        }
+    }
+
+
+    & > div#workspace {
+        position: absolute;
+        touch-action: none;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+
+
+        &.noHover {
+            pointer-events: none;
+        }
+
+
+        &.connect {
+            circle.link:hover {
+                cursor: pointer;
+                stroke: $accent !important;
+            }
+        }
+
+
+        &.edit {
+            g.port:hover {
+                cursor: pointer;
+                
+                & > text {
+                    fill: $accent;
+                    stroke: unset;
+                }
+
+                
+                & > circle {
+                    stroke: $accent;
+                }
+            }
+
+
+            g > g:hover {
+                & > rect  {
+                    cursor: pointer;
+                    stroke: $accent !important;
+                }
+                
+
+                & > path.icon {
+                    fill: $accent !important;
+                }
+            }
+        }
+
+        
+        button#s {
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            cursor: pointer;
+            position: absolute;
+            bottom: 25px;
+            right: 10px;
+            top: unset;
+            width: unset;
+        }
+
+
+        & > svg {
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            position: relative;
+            height: 1080px;
+            width: 1920px;
+            background-image: url(/assets/image/bg.png);
+            background-repeat: repeat;
+            stroke-width: 1px;
+            fill: white;
+            stroke: $primary_light;
+
+
+            text {
+                fill: $primary;
+                stroke: unset;
+                stroke-width: 0;
+                user-select: none;
+            }
+
+
+            & > g.node {
+                fill: white;
+
+
+                & > g {
+                    fill: #ffffff;
+
+
+                    & > path.icon {
+                        stroke: none;
+                        fill: $primary_light;
+                        pointer-events: none;
+                    }
+                }
+
+
+                & > circle {
+                    z-index: 2;
+    
+    
+                    /*&.string {
+                        stroke: rgb(206, 157, 157);
+                    }
+                    
+                    
+                    &.\[number\] {
+                        stroke: rgb(157, 157, 206);
+                    }
+    
+    
+                    &.object {
+                        stroke: rgb(157, 206, 157);
+                    }*/
+                }
+            }
+
+
+            & > path.connection {
+                pointer-events: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import '../../general_dialog.component.scss';
+@import "src/color.scss";
+
+
+:host > form {
+    & > main {
+        padding: 0 8px;
+        
+        
+        & > mat-form-field {
+            width: 100%;
+        }
+    }   
+}

@@ -1,0 +1,50 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.save()">
+    <header>
+        <label>HTTP Client</label>
+        <div>
+            <button
+            class="light"
+            [class.disabled]="!this.mFormGroup.dirty"
+            (click)="this.reset();"
+            type="button">
+                <icon name="revert"></icon>
+            </button>
+        </div>
+        <div>
+            <button
+            class="light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="light destroy"
+            (click)="this.cancel();"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <input type="text" matInput formControlName="url" placeholder="URL" />
+            <mat-hint align="start"><strong>http://192.168.1.1/data</strong></mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Methode</mat-label>
+            <mat-select formControlName="methode">
+                <mat-option>None</mat-option>
+                <mat-option value="DELETE">DELETE</mat-option>
+                <mat-option value="GET">GET</mat-option>
+                <mat-option value="POST">POST</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput formControlName="body" placeholder="Body" />
+            <mat-hint align="start"><strong>POST / DELETE</strong></mat-hint>
+        </mat-form-field>
+    </main>
+</form>

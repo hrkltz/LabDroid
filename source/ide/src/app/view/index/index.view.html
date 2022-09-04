@@ -1,0 +1,33 @@
+<svg
+width="96"
+height="96"
+viewBox="0 0 38 38"
+xmlns="http://www.w3.org/2000/svg"
+style="opacity: 0.4; z-index: -1;">
+  <use xlink:href="#logo"></use>
+</svg>
+<header></header>
+<main
+(mouseenter)="this.mInfoBoxService.mText = 'empty'">
+  <article
+  [class.disabled]="this.mWebSocket.mSystem.projectName"
+  (click)="this.create()">
+    <div>
+      <label>
+        New Project
+      </label>
+      <icon name="plus"></icon>
+    </div>
+  </article>
+  <ng-container *ngFor="let eProjectName of this.mWebSocket.mSystem.projects">
+      <article
+      [id]="eProjectName"
+      (mouseenter)="this.mInfoBoxService.mText = 'indexProject'"
+      (mouseout)="this.mInfoBoxService.mText = 'empty'"
+      (click)="this.navigate(eProjectName)">
+        <label>
+          {{eProjectName}}
+        </label>
+      </article>
+  </ng-container>
+</main>

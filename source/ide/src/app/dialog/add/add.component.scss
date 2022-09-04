@@ -1,0 +1,22 @@
+@import '../general_dialog.component.scss';
+@import 'src/color.scss';
+
+
+:host {
+    & > main > div {
+        cursor: pointer;
+        height: 36px;
+        width: 240px;
+        padding: 0 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    
+    
+        &:hover {
+            color: $accent;
+            background-color: $primary_lighter;
+        }
+    }
+}

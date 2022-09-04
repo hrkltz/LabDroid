@@ -1,0 +1,13 @@
+@import '../../general_dialog.component.scss';
+
+
+:host {
+    & > main {
+        padding: 5px;
+
+
+        & > p {
+            margin: unset;
+        }
+    }
+}

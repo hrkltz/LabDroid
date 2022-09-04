@@ -1,0 +1,67 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.mDialogRef.close(true, this.mFormGroup.controls.channelName.value)">
+    <header>
+        <label>{{ this.mType | translate }}</label>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.mDialogRef.close(false);"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <mat-label>Component</mat-label>
+            <mat-select
+            #example
+            formControlName="componentName">
+                <ng-container *ngFor="let eComponent of this.mComponents | keyvalue; index as i">
+                    <ng-container
+                    *ngIf="this.mType == 'input'">
+                        <mat-option
+                        *ngIf="eComponent.value.broadcasts || eComponent.value.polls"
+                        [value]="eComponent.key">{{ eComponent.key | translate }}</mat-option>
+                    </ng-container>
+                    <ng-container
+                    *ngIf="this.mType == 'output'">
+                        <mat-option
+                        *ngIf="eComponent.value.channels"
+                        [value]="eComponent.key">{{ eComponent.key | translate }}</mat-option>
+                    </ng-container>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="this.mFormGroup.controls.componentName.value != 'NONE'">
+            <mat-label>Channel</mat-label>
+            <mat-select
+            #example
+            formControlName="channelName">
+                <ng-container
+                *ngIf="this.mType == 'input'">
+                    <ng-container *ngFor="let eChannel of this.mComponents[this.mFormGroup.controls.componentName.value].broadcasts; index as i">
+                        <mat-option [value]="eChannel">&#9675; {{ eChannel }}</mat-option>
+                    </ng-container>
+                    <ng-container *ngFor="let eChannel of this.mComponents[this.mFormGroup.controls.componentName.value].polls; index as i">
+                        <mat-option [value]="'_'+eChannel">&#9633; {{ eChannel | translate}}</mat-option>
+                    </ng-container>
+                </ng-container>
+                <ng-container
+                *ngIf="this.mType == 'output'">
+                    <ng-container *ngFor="let eChannel of this.mComponents[this.mFormGroup.controls.componentName.value].channels; index as i">
+                        <mat-option [value]="eChannel">{{ eChannel | translate }}</mat-option>
+                    </ng-container>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+    </main>
+</form>

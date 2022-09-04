@@ -1,0 +1,80 @@
+@import "src/color.scss";
+
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+    & > svg {
+        position: fixed;
+        top: 30px;
+    }
+
+    & > header {
+        flex: 0 0 20vh;
+    }
+
+
+    & > main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 210px);
+        grid-gap: 30px;
+        max-width: 960px;
+        width: calc(100vw - 40px);
+        justify-content: center;
+
+
+        & > article {
+            border-radius: 3px;
+            padding: 6px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ffffff;
+
+
+            &:hover {
+                color: $accent;
+                fill: $accent;
+                border: 1px solid $accent;
+
+                & button {
+                    visibility: unset;
+                }
+            }
+
+
+            & button {
+                visibility: hidden;
+            }
+
+
+            & label {
+                pointer-events: none;
+            }
+
+
+            & > label {
+                width: 100%;
+            }
+
+            & > div {
+                pointer-events: none;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
+}

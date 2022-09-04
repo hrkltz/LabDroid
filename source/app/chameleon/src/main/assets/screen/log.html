@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Poppins|Montserrat" 
+        rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Montserrat', sans-serif;
+                padding: 0 12px;
+            }
+
+
+            header {
+              align-items: center;
+              justify-content: center;
+              display: flex;
+              padding: 12px 0;
+            }
+
+
+            label {
+                font-family: 'Poppins';
+                flex: 1 1 auto;
+                font-size: 24px;
+            }
+
+
+            table {
+                width: 100%;
+            }
+
+
+            thead {
+                font-weight: bold;
+            }
+
+
+            tr.error {
+                color: #d21111;
+            }
+
+
+            @media (max-width: 480px) {
+                td.time {
+                    display: none;
+                }
+            }
+          </style>
+    </head>
+    <body onload="connect()">
+        <header>
+            <label>Log</label>
+        </header>
+        <table>
+            <thead>
+            <tr>
+                <td class="time">Time</td>
+                <td>Source</td>
+                <td>Value</td>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </body>
+    <script>
+        const gTable = document.getElementsByTagName('table')[0];
+        const gTableBody = document.getElementById('tableBody');
+        var gWebSocket;
+
+
+        function pad(n) {
+            return n<10 ? '0'+n : n
+        }
+
+
+        function connect() {
+            gWebSocket = new WebSocket(`ws://${window.location.hostname}:8081/log`);
+            gWebSocket.onopen = function(pEvent) { };
+
+            gWebSocket.onmessage = function(pEvent) {
+                let lLog = JSON.parse(pEvent.data);
+                let lData = []
+
+                Object.keys(lLog).forEach(eKey => {
+                    lLog[eKey].forEach(eMessage => {
+                        lData.push(Object.assign(eMessage, {'source': eKey}))
+                    });
+                });
+
+                lData.sort((a, b) => {
+                    return a.timestamp - b.timestamp;
+                })
+                
+                lData.forEach(eMessage => {
+                    if (gTableBody.rows.length > 200) {
+                        gTable.deleteRow(-1);
+                    }
+
+                    let lRow = gTableBody.insertRow(0);
+                    switch(eMessage.type) {
+                        case 0: lRow.className = "info"; break;
+                        case 1: lRow.className = "error"; break;
+                    }
+                    
+                    let lTimeCell = lRow.insertCell(0);
+                    lTimeCell.className = "time";
+                    let lSourceCell = lRow.insertCell(1);
+                    let lDataCell = lRow.insertCell(2);
+                    let lTimeTextNode = document.createTextNode(eMessage.
+                    time);
+                    let lSourceTextNode = document.createTextNode(eMessage.
+                    source);
+                    let lDataTextNode = document.createTextNode(eMessage.
+                    msg);
+                    lTimeCell.appendChild(lTimeTextNode);
+                    lSourceCell.appendChild(lSourceTextNode);
+                    lDataCell.appendChild(lDataTextNode);
+                });
+            };
+            
+            gWebSocket.onclose = function(pEvent) { };
+            gWebSocket.onerror = function(pEvent) { };
+        }
+
+
+        function disconnect() {
+            if (gWebSocket) {
+                gWebSocket.close();
+                delete gWebSocket;
+            }
+        }
+    </script>
+</html>

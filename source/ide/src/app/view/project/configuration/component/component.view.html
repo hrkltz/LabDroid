@@ -1,0 +1,42 @@
+<form
+[formGroup]="this.mFormGroup">
+    <header>
+        <label>{{ this.mComponentId | translate }}</label>
+    </header>
+    <main>
+        <ng-container *ngFor="let eBlueprint of this.mBlueprints | keyvalue; index as i">
+            <div>
+                <label>{{ eBlueprint.key }}</label>
+                <mat-form-field
+                *ngIf="eBlueprint.value.type == 'Select'">
+                    <mat-select
+                    #example
+                    [formControlName]="eBlueprint.key">
+                        <ng-container *ngFor="let eOption of eBlueprint.value.options; index as i">
+                            <mat-option *ngIf="eOption" [value]="eOption">{{ eOption | translate }}</mat-option>
+                            <mat-option *ngIf="!eOption" value="">{{ 'none' | translate }}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field
+                *ngIf="eBlueprint.value.type == 'String'">
+                    <input
+                    type="text"
+                    matInput
+                    [formControlName]="eBlueprint.key"
+                    [placeholder]="eBlueprint.key" />
+                    <mat-hint align="start"><strong>String</strong></mat-hint>
+                </mat-form-field>
+                <mat-form-field
+                *ngIf="eBlueprint.value.type == 'Integer' || eBlueprint.value.type == 'Long' || eBlueprint.value.type == 'Float' || eBlueprint.value.type == 'Double'">
+                    <input
+                    type="number"
+                    matInput
+                    [formControlName]="eBlueprint.key"
+                    [placeholder]="eBlueprint.key" />
+                    <mat-hint align="start"><strong>Number</strong></mat-hint>
+                </mat-form-field>
+            </div>
+        </ng-container>
+    </main>
+</form>

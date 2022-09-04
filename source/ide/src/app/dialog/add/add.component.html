@@ -1,0 +1,19 @@
+<header>
+    <label>Add Node</label>
+    <div>
+        <button
+        class="designed night light destroy"
+        (click)="this.mDialogRef.close(false);"
+        type="button">
+            <icon name="cross"></icon>
+        </button>
+    </div>
+</header>
+<main>
+    <div
+    *ngFor="let eGroup of this.mDialogConfig.data; index as i"
+    (click)="this.mDialogRef.close(true, eGroup)">
+        <p>{{ eGroup.groupName | translate }}</p>
+        <p>{{eGroup.count}}/{{eGroup.max}}</p>
+    </div>
+</main>

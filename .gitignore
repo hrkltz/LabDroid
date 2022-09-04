@@ -1,0 +1,31 @@
+
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# /app
+/source/app/.gradle
+/source/app/.externalNativeBuild
+/source/app/.DS_Store
+/source/app/.idea
+/source/app/*.iml
+/source/app/local.properties
+/source/app/app/build
+/source/app/captures
+
+# /ide
+/source/ide/.sass-cache
+/source/ide/package-lock.json
+/source/ide/e2e
+/source/ide/dist
+/source/ide/tmp
+/source/ide/out-tsc
+/source/ide/node_modules
+/source/ide/coverage
+/source/ide/libpeerconnection.log
+/source/ide/typings
+/source/ide/npm-debug.log

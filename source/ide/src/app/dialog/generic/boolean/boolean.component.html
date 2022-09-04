@@ -1,0 +1,20 @@
+<header>
+    <label>{{this.mDialogConfig.data.header}}</label>
+    <div>
+        <button
+        class="designed night light primary"
+        type="submit"
+        (click)="this.mDialogRef.closeSimple(true)">
+            <icon name="check"></icon>
+        </button>
+        <button
+        class="designed night light destroy"
+        (click)="this.mDialogRef.closeSimple(false)"
+        type="button">
+            <icon name="cross"></icon>
+        </button>
+    </div>
+</header>
+<main>
+    <p>{{this.mDialogConfig.data.main}}</p>
+</main>

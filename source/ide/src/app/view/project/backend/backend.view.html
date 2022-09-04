@@ -1,0 +1,136 @@
+<div
+*ngIf="this.mWebSocket.mProject != null"
+#workspace
+id="workspace"
+[ngClass]="{
+    'edit': this.mMode == Mode.EDIT, 
+    'connect': this.mMode == Mode.CONNECT, 
+    'disabled': (this.mWebSocket.mSystem.projectName != null) || (this.mWebSocket.mSystem.changingState == true),
+    'noHover': !this.mInfoBoxService.mHasFocus
+    }"
+(mouseover)="this.mInfoBoxService.mText = 'workspace'"
+(dblclick)="this.workspace_dblclick($event)"
+(pointerdown)="this.workspace_pointerdown($event)"
+(pointermove)="this.workspace_pointermove($event)"
+(pointerup)="this.workspace_pointerup($event)">
+    <svg [attr.transform]="'matrix(' + this.mTransformMatrixAsString + ')'">
+        <ng-container *ngFor="let eConnection of this.mWebSocket.mProject.connections">
+            <ng-container *ngIf="this.formatPath(eConnection); let path">
+                <path
+                class="connection"
+                [attr.d]="path" />
+            </ng-container>
+        </ng-container>
+        <ng-container *ngFor="let eNode of this.mWebSocket.mNodesAsList; trackBy: trackByFunction; index as $ii">
+            <g
+            [id]="eNode.groupName + '.' + eNode.nodeName"
+            class="node"
+            [attr.transform]="'translate(' + eNode.node.position.x + ', ' + eNode.node.position.y + ')'">
+                <text
+                *ngIf="eNode.node.label"
+                x="30"
+                y="-6"
+                font-size="16px"
+                text-anchor="middle">
+                    {{eNode.node.label}}
+                </text>
+                <g>
+                    <rect
+                    x="0"
+                    y="0"
+                    width="60"
+                    [attr.height]="60 + (30*(this.getNodePortCount(eNode.node)-1))"
+                    (mouseenter)="this.mInfoBoxService.mText = 'node'"
+                    (pointerdown)="this.core_pointerdown($event, 'core', eNode.groupName, eNode.nodeName);"></rect>
+                   <ng-container [ngSwitch]="eNode.groupName">
+                        <path
+                        *ngSwitchCase="'scripts'"
+                        class="icon"
+                        transform="translate(12,12) scale(1.5)" d="M9.046 16.954a.5.5 0 000-.708L4.8 12l4.246-4.246a.5.5 0 000-.708l-.692-.692a.5.5 0 00-.708 0l-5.292 5.292a.5.5 0 000 .708l5.292 5.292a.5.5 0 00.708 0l.692-.692zm5.908 0a.5.5 0 010-.708L19.2 12l-4.246-4.246a.5.5 0 010-.708l.692-.692a.5.5 0 01.708 0l5.292 5.292a.5.5 0 010 .708l-5.292 5.292a.5.5 0 01-.708 0l-.692-.692z"/>
+                    </ng-container>
+                </g>
+                <ng-container
+                *ngIf="eNode.node.inputs">
+                    <ng-container
+                    *ngFor="let eInput of eNode.node.inputs; index as $iii">
+                        <ng-container
+                        *ngIf="!eInput">
+                            <g
+                            [id]="eNode.groupName + '/' + eNode.nodeName + '.i' + $iii"
+                            class="port input link"
+                            (mouseenter)="this.mInfoBoxService.mText = 'port'">
+                                    <circle
+                                    class="link input"
+                                    cx="0"
+                                    [attr.cy]="30*(1 + $iii)"
+                                    r="10"
+                                    (pointerdown)="this.pointerDownPortHandler($event, 'input', eNode, $iii)"
+                                    (pointerup)="this.pointerUpPortHandler($event, 'input', eNode, $iii)"/>
+                            </g>
+                        </ng-container>
+                        <ng-container
+                        *ngIf="eInput">
+                            <g
+                            [id]="eNode.groupName + '/' + eNode.nodeName + '.i' + $iii"
+                            class="port input link"
+                            (mouseenter)="this.mInfoBoxService.mText = 'channel'">
+                                <text
+                                x="-10"
+                                [attr.y]="30*(1 + $iii) + 4"
+                                font-size="16px"
+                                text-anchor="end">
+                                    {{ eInput[1] | translate }}.{{ eInput[2] | translate }}
+                                </text>
+                                <circle
+                                *ngIf="eInput[3] == 'stream'"
+                                cx="0"
+                                [attr.cy]="30*(1 + $iii)"
+                                r="4" />
+                                <rect
+                                *ngIf="eInput[3] == 'poll'"
+                                x="-4"
+                                [attr.y]="(30*(1 + $iii))-4"
+                                width="8"
+                                height="8" />
+                            </g>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="eNode.node.outputs">
+                    <ng-container *ngFor="let eOutput of eNode.node.outputs; index as $iii">
+                        <g
+                        [id]="eNode.groupName + '/' + eNode.nodeName + '.i' + $iii"
+                        class="port output link"
+                        (mouseenter)="this.mInfoBoxService.mText = eOutput? 'channel' : 'port'">
+                            <ng-container *ngIf="!eOutput">
+                                <circle
+                                class="link output"
+                                cx="60"
+                                [attr.cy]="30*(1 + $iii)"
+                                r="10" 
+                                (pointerdown)="this.pointerDownPortHandler($event, 'output', eNode, $iii)"
+                                (pointerup)="this.pointerUpPortHandler($event, 'output', eNode, $iii)" />
+                            </ng-container>
+                            <ng-container
+                            *ngIf="eOutput">
+                                <text
+                                x="70"
+                                [attr.y]="30*(1 + $iii) + 4"
+                                font-size="16px"
+                                text-anchor="start">
+                                    {{ eOutput[1] | translate }}.{{ eOutput[2] | translate }}
+                                </text>
+                                <circle
+                                cx="60"
+                                [attr.cy]="30*(1 + $iii)"
+                                r="4" />
+                            </ng-container>
+                        </g>
+                    </ng-container>
+                </ng-container>
+            </g>
+        </ng-container>
+        <path *ngIf="this.mSelected != null && this.mSelected.type === 'output'" style="pointer-events:none" stroke="#000000" stroke-width="2" [attr.d]="'M' + (this.getNodeById(this.mSelected.group, this.mSelected.node).position.x+60) + ',' + (this.getNodeById(this.mSelected.group, this.mSelected.node).position.y + 30*(1+this.mSelected.port)) + ' ' + (mouse.x-48) + ',' + mouse.y" />
+        <path *ngIf="this.mSelected != null && this.mSelected.type === 'input'" style="pointer-events:none" stroke="#000000" stroke-width="2" [attr.d]="'M' + (this.getNodeById(this.mSelected.group, this.mSelected.node).position.x) + ',' + (this.getNodeById(this.mSelected.group, this.mSelected.node).position.y + 30*(1+this.mSelected.port)) + ' ' + (mouse.x-48) + ',' + mouse.y" />
+    </svg>
+</div>

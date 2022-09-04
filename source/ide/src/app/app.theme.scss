@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+@include mat-core();
+
+$chameleon-app-primary: mat-palette($mat-blue, 700);
+$chameleon-app-accent: mat-palette($mat-blue, A200, A100, A400);
+$chameleon-app-warn: mat-palette($mat-red);
+
+$chameleon-app-theme: mat-light-theme($chameleon-app-primary, $chameleon-app-accent, $chameleon-app-warn);
+
+@include angular-material-theme($chameleon-app-theme);

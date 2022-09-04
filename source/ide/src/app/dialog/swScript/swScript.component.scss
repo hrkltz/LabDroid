@@ -1,0 +1,22 @@
+@import '../general_dialog.component.scss';
+@import "src/color.scss";
+
+
+:host {
+    width: calc(100vw - 20px);
+    max-width: 960px;
+    height: calc(100vh - 20px);
+
+
+    & > form {
+        & > main {
+            display: flex;
+            flex-direction: row;
+    
+    
+            & > div#editor {
+                flex: 1 1 auto;
+            }
+        }
+    }
+}

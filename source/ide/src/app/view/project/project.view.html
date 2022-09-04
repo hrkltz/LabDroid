@@ -1,0 +1,45 @@
+<aside> <!--[ngClass]="{'hidden': this.mSelected}"-->
+    <button
+    id="toggleExecution"
+    [class.stop]="this.mWebSocket.mSystem.projectName"
+    [class.disabled]="this.mWebSocket.mSystem.changingState"
+    (click)="this.toggleExecution()">
+        <icon
+        [name]="(this.mWebSocket.mSystem.projectName) ? 'pause' : 'play'"></icon>
+    </button>
+    <!-- Strange bug with routerLink somehow the stroke (line color) property doesnt work well. -->
+    <button
+    [class.active]="this.mRouter.url.includes('config')"
+    [class.disabled]="this.mWebSocket.mSystem.projectName"
+    [class.showSide]="this.mWebSocket.mShowSide"
+    (click)="this.navigateOrCloseSide([this.mProjectName, 'config'])">
+        <icon name="configuration"></icon>
+    </button>
+    <button
+    [class.active]="this.mRouter.url.endsWith('backend')"
+    [class.disabled]="this.mWebSocket.mSystem.projectName"
+    (click)="this.mRouter.navigate([this.mProjectName, 'backend'], { skipLocationChange: true })">
+        <icon name="backend"></icon>
+    </button>
+    <button
+    [class.active]="this.mRouter.url.endsWith('frontend')"
+    [class.disabled]="this.mWebSocket.mSystem.projectName"
+    [class.showSide]="this.mWebSocket.mShowSide"
+    (click)="this.navigateOrCloseSide([this.mProjectName, 'frontend'])">
+        <icon name="frontend"></icon>
+    </button>
+    <span style="flex: 1;"></span>
+    <button
+    [class.active]="this.mRouter.url.endsWith('log')"
+    (click)="this.mRouter.navigate([this.mProjectName, 'log'], { skipLocationChange: true })">
+        <icon name="log"></icon>
+    </button>
+    <button
+    [class.disabled]="this.mWebSocket.mSystem.projectName"
+    (click)="this.mRouter.navigate(['/'], { skipLocationChange: true })">
+        <icon name="home"></icon>
+    </button>
+</aside>
+<main>
+    <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f30ab177bcc13bffb2fe9ecb63a672422c72b086" datatype="html">
+        <source>{VAR_SELECT, select, com/server/websocket {WebSocket} }</source>
+        <target>{VAR_SELECT, select, com/server/websocket {WäbSocket} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dialog/add/add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

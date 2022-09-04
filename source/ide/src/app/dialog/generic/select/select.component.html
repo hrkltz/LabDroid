@@ -1,0 +1,36 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.mDialogRef.close(true, this.mFormGroup.controls.name.value)">
+    <header>
+        <label>
+            {{ this.mHeader | translate }}
+        </label>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!(this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.mDialogRef.close(true, this.mFormGroup.controls.select.value)">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.mDialogRef.close(false)"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <mat-label>{{this.mHeader | translate }}</mat-label>
+            <mat-select
+            #select
+            formControlName="select">
+                <ng-container *ngFor="let eValue of this.mValues; index as i">
+                    <mat-option [value]="eValue">{{ eValue | translate }}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+    </main>
+</form>

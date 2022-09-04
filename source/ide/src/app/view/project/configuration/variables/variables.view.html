@@ -1,0 +1,58 @@
+<form
+[formGroup]="this.mFormGroup">
+    <header>
+        <label>Variables</label>
+        <button
+        (click)="this.add()">
+            ADD
+        </button>
+    </header>
+    <main>
+        <div
+        *ngFor="let eControl of this.mFormGroup.controls | keyvalue; index as idx"
+        [formGroupName]="eControl.key">
+            <mat-form-field>
+                <mat-label>Label</mat-label>
+                <input
+                type="text"
+                matInput
+                formControlName="label"
+                placeholder="Name" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Datatype</mat-label>
+                <mat-select
+                #datatype
+                formControlName="datatype">
+                    <mat-option
+                    value="number">
+                        Number
+                    </mat-option>
+                    <mat-option
+                    value="string">
+                        String
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Value</mat-label>
+                <input
+                *ngIf="eControl.value.controls['datatype'].value == 'number'"
+                type="number"
+                matInput
+                formControlName="value"
+                placeholder="0" />
+                <input
+                *ngIf="eControl.value.controls['datatype'].value == 'string'"
+                type="text"
+                matInput
+                formControlName="value"
+                placeholder="Text" />
+            </mat-form-field>
+            <button
+            (click)="this.mFormGroup.removeControl(eControl.key)">
+                DELETE
+            </button>
+        </div>
+    </main>
+</form>

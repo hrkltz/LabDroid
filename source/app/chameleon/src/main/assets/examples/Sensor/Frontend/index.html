@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Montserrat"
+          rel="stylesheet">
+    <style>
+      body {
+          margin: 0;
+          font-family: 'Montserrat', sans-serif;
+          padding: 0 12px;
+          height: 100vh;
+          width: 100vw;
+      }
+
+
+      header {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 12px 0;
+      }
+
+
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 280px);
+        justify-content: center;
+        align-items: center;
+      }
+
+
+      label {
+          font-family: 'Poppins';
+          flex: 1 1 auto;
+          font-size: 24px;
+      }
+
+
+      .line {
+        fill: none;
+        stroke: #000;
+        stroke-width: 1.5px;
+      }
+
+
+      .accel {
+        fill: transparent;
+        color: #0000aa5b;
+        stroke: #0000aa5b;
+      }
+
+
+      .gyro {
+        fill: transparent;
+        color: #00aa00ab;
+        stroke: #00aa00ab;
+      }
+
+
+      .filter {
+        fill: transparent;
+        color: #cc0000;
+        stroke: #cc0000;
+      }
+  </style>
+</head>
+<body onload="connect()">
+<header>
+    <label>
+        Sensor
+        <br />
+        <span class="accel">Accel</span> <span class="gyro">Gyro</span> <span class="filter">Filter</span>
+    </label>
+</header>
+<main>
+    <svg id="graph" width="280" height="460"></svg>
+</main>
+</body>
+<script src="d3.min.js"></script>
+<script>
+  let gWebSocket;
+
+  function connect() {
+      gWebSocket = new WebSocket(`ws://${window.location.hostname}:8081/user`);
+      gWebSocket.onopen = function(pEvent) { };
+
+      gWebSocket.onmessage = function(pEvent) {
+        let lMessage = JSON.parse(pEvent.data);
+
+        update(gGraph, lMessage.accel, lMessage.gyro, lMessage.filter)
+      };
+
+      gWebSocket.onclose = function(pEvent) { };
+      gWebSocket.onerror = function(pEvent) { };
+  }
+
+
+  function disconnect() {
+      if (gWebSocket) {
+          gWebSocket.close();
+          delete gWebSocket;
+      }
+  }
+
+
+  function send() {
+      gWebSocket.send(gInputMessage.value);
+  }
+
+
+  var n = 40;
+  var random = d3.randomNormal(0, .2);
+
+  function generate(pSelector, pMin, pMax) {
+    var svg = d3.select("svg"+pSelector);
+    var margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    var width = svg.attr("width") - margin.left - margin.right;
+    var height = svg.attr("height") - margin.top - margin.bottom;
+
+    var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var x = d3.scaleLinear()
+        .domain([0, n - 1])
+        .range([0, width]);
+
+    var y = d3.scaleLinear()
+        .domain([pMin, pMax])
+        .range([height, 0]);
+    var line = d3.line()
+        .x(function(d, i) { return x(i); })
+        .y(function(d, i) { return y(d); });
+
+    var dataX = d3.range(n);
+    var dataY = d3.range(n);
+    var dataZ = d3.range(n);
+    
+    g.append("defs").append("clipPath")
+        .attr("id", "clip")
+      .append("rect")
+        .attr("width", width)
+        .attr("height", height);
+    g.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + y(0) + ")")
+        .call(d3.axisBottom(x).tickFormat(""));
+    g.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y).ticks(5, "f"));
+    // X line
+    g.append("g")
+        .attr("clip-path", "url(#clip)")
+      .append("path")
+        .datum(dataX)
+        .attr("class", "line accel")
+        .attr("id", "x");
+    // Y line
+    g.append("g")
+        .attr("clip-path", "url(#clip)")
+      .append("path")
+        .datum(dataY)
+        .attr("class", "line gyro")
+        .attr("id", "y");
+    // Z line
+    g.append("g")
+        .attr("clip-path", "url(#clip)")
+      .append("path")
+        .datum(dataZ)
+        .attr("class", "line filter")
+        .attr("id", "z");
+
+    return {
+      graph: svg,
+      x: dataX,
+      y: dataY,
+      z: dataZ,
+      line: line
+    }
+  }
+
+
+  const gGraph = generate("#graph", -45, 45)
+
+
+  function update(pGraph, pX, pY, pZ) {
+    // Push a new data point onto the back.
+    pGraph.x.push(pX);
+    pGraph.y.push(pY);
+    pGraph.z.push(pZ);
+
+    // Redraw the line.
+    pGraph.graph.select("path#x")
+      .attr("d", pGraph.line)
+      .attr("transform", null);
+
+      pGraph.graph.select("path#y")
+      .attr("d", pGraph.line)
+      .attr("transform", null);
+
+      pGraph.graph.select("path#z")
+      .attr("d", pGraph.line)
+      .attr("transform", null);
+
+    // Pop the old data point off the front.
+    pGraph.x.shift();
+    pGraph.y.shift();
+    pGraph.z.shift();
+  }
+</script>

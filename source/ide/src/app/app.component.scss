@@ -1,0 +1,33 @@
+@import "src/color.scss";
+
+
+:host {
+    & > div#infobox {
+        z-index: 11;
+        background-color: #ffffffee;
+        position: absolute;
+        bottom: 16px;
+        right: 24px;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
+        padding: 5px;
+        backdrop-filter: blur(5px) brightness(1.05);
+        user-select: none;
+
+
+        & p {
+            margin: unset;
+        }
+
+        td:nth-child(1) > label {
+            float: right;
+            user-select: none;
+        }
+
+
+        & > icon {
+            float: right;
+            cursor: pointer;
+        }
+    }
+}

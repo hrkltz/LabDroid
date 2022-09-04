@@ -1,0 +1,49 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.mDialogRef.close(true, this.mFormGroup.controls.name.value)">
+    <header>
+        <label>New Project</label>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.mDialogRef.close(false);"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <input
+            #name
+            type="text"
+            matInput
+            formControlName="name"
+            placeholder="Name"
+            maxlength="18"
+            pattern="^[A-Za-z0-9_-]*$" />
+        </mat-form-field>
+        <h1>Example</h1>
+        <div>
+            <article
+            [class.selected]="'Empty' == this.mSelected"
+            (click)="this.mSelected = 'Empty'">
+                Empty
+            </article>
+            <ng-container *ngFor="let eExampleName of this.mExamples; index as i">
+                <article
+                [class.selected]="eExampleName == this.mSelected"
+                (click)="this.mSelected = eExampleName">
+                    {{ eExampleName }}
+                </article>
+            </ng-container>
+        </div>
+    </main>
+</form>

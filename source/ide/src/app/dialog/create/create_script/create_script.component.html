@@ -1,0 +1,53 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.mDialogRef.close(true, this.mFormGroup.controls.name.value)">
+    <header>
+        <label>New Script</label>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!this.mFormGroup.valid"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.mDialogRef.close(false);"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <input
+            #name
+            type="text"
+            matInput
+            formControlName="name"
+            placeholder="Name"
+            pattern="^[A-Za-z0-9_-]*$" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Inputs</mat-label>
+            <mat-select #inputCount formControlName="inputCount">
+                <mat-option value="0">0</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Outputs</mat-label>
+            <mat-select #outputCount formControlName="outputCount">
+                <mat-option value="0">0</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </main>
+</form>

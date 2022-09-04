@@ -1,0 +1,36 @@
+<aside
+[class.show]="this.mWebSocketService.mShowSide">
+    <a 
+    [routerLink]="'./'"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    skipLocationChange>Settings</a>
+    <a 
+    [routerLink]="'variables'"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    skipLocationChange>Variables</a>
+    <a 
+    [routerLink]="'files'"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    skipLocationChange>Files</a>
+    <div>
+        <label>Automatic Start</label>
+        <button
+        [class.disabled]="this.mWebSocketService.mSystem.components.size == this.mConfigurations.size"
+        (click)="this.addSettings()">
+            <icon name="plus"></icon>
+        </button>
+    </div>
+    <ng-container *ngFor="let eConfiguration of this.mWebSocketService.mProject.configurations | keyvalue">
+        <a 
+        [routerLink]="eConfiguration.key"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        skipLocationChange>{{ eConfiguration.key | translate }}</a>
+    </ng-container>
+</aside>
+<main>
+    <router-outlet></router-outlet>
+</main>

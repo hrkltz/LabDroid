@@ -1,0 +1,138 @@
+@import "src/color.scss";
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: $primary;
+
+    
+    div.loaderContainer {
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+
+        & > div {
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+
+    h1 {
+        font-weight: normal;
+        margin: 10px 0;
+    }
+    
+    
+    button {
+        user-select: none;
+        background: unset;
+        border: unset;
+        cursor: pointer;
+        padding: unset;
+        outline: none;
+        fill: $primary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: inherit;
+
+
+        &.designed {
+            padding: 6px 12px;
+
+            &.day {
+                background: linear-gradient(180deg, #fff, #eee 2%, #eee 98%, #ccc);
+            }
+
+            &.night {
+                background: linear-gradient(180deg, #ccc, #666 2%, #666 98%, #000);
+            }
+        }
+
+
+        &.light {
+            fill: #dddddd;
+
+
+            &:hover {
+                fill: #ffffff;
+            }
+    
+    
+            &.primary:hover {
+                fill: $accent_light;
+            }
+        
+        
+            &.destroy:hover {
+                fill: $destroy;
+            }
+        }
+
+
+        &:hover {
+            fill: $primary_dark;
+        }
+
+
+        &.primary:hover {
+            fill: $accent_dark;
+        }
+    
+    
+        &.destroy:hover {
+            fill: $destroy;
+        }
+
+    
+        &.pprimary {
+            fill: $accent;
+
+
+            &:hover {
+                fill: $accent_light;
+            }
+        }
+    
+    
+        &.ddestroy {
+            fill: $destroy;
+
+            
+            &:hover {
+                fill: $destroy_dark;
+            }
+        }
+    }
+    
+
+    button.mat-fab {
+        position: absolute;
+        bottom: 42px;
+        right: 42px;
+        fill: #ffffff;
+    }
+}
+
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.75;
+    filter: grayscale(100%);
+}
+
+
+.hidden {
+    opacity: 0.04;
+    pointer-events: none;
+}

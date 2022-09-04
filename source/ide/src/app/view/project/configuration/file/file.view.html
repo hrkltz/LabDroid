@@ -1,0 +1,21 @@
+<header>
+    <label>Files</label>
+</header>
+<main>
+    <ng-container *ngFor="let eFileName of this.mWebSocketService.mProject.files; index as i">
+        <div>
+            <label>{{ eFileName }}</label>
+            <button
+            class="designed day pprimary"
+            (click)="this.download(eFileName)">
+                <icon name="download"></icon>
+            </button>
+            <button
+            class="designed day primary destroy"
+            (click)="this.delete(eFileName)"
+            type="button">
+                <icon name="delete"></icon>
+            </button>
+        </div>
+    </ng-container>
+</main>

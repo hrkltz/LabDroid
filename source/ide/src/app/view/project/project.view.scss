@@ -1,0 +1,74 @@
+@import "src/color.scss";
+
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+
+    & > aside {
+        background-color: #1b1b1b;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 48px;
+        font-size: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        stroke: #999999;
+        fill: #999999;
+        stroke-width: 1.25px;
+
+
+        & > button#toggleExecution {
+            stroke: #7B91C7;
+            
+
+            &:hover {
+                stroke-width: 2px;
+            }
+
+            &.stop {
+                stroke: #E74E46;
+            }
+        }
+
+
+        & > button {
+            font-size: 32px;
+            padding: 8px 8px 8px 6px;
+            border-left: 2px solid transparent;
+
+            
+            &:hover {
+                stroke: #dddddd;
+                fill: #dddddd;
+            }
+
+
+            &.active {
+                stroke: #ffffff;
+                fill: #ffffff;
+
+
+                &.showSide {
+                    border-left-color: #ffffff;
+                }
+            }
+        }
+    }
+
+
+    & > main {
+        position: absolute;
+        left: 48px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+    }
+}

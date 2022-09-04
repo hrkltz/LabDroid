@@ -1,0 +1,99 @@
+<ng-template
+#recursiveList
+let-mTree="tree"
+let-mBase="base">
+    <div class="level">
+        <ng-container *ngFor="let item of mTree | keyvalue: customOrder">
+            <details *ngIf="item.value">
+                <summary
+                [class.selected]="this.mSelection.path && this.mSelection.path === (mBase + item.key)"
+                (click)="this.selectGuard(mBase + item.key, false)">{{item.key}}</summary>
+                <ng-container>
+                    <ng-container *ngTemplateOutlet="recursiveList; context:{tree: item.value, base: mBase + item.key + '/' }"></ng-container>
+                </ng-container>
+            </details>
+            <a
+            *ngIf="!item.value"
+            [class.selected]="this.mSelection.path && this.mSelection.path === (mBase + item.key)"
+            (click)="this.selectGuard(mBase + item.key, true)">{{item.key}}</a>
+        </ng-container>
+    </div>
+</ng-template>
+
+
+<aside
+[class.show]="this.mWebSocketService.mShowSide">
+    <header>
+        <button
+        (click)="this.createFile()">
+            <icon name="create_file"></icon>
+        </button>
+        <button
+        (click)="this.createFolder()">
+            <icon name="create_folder"></icon>
+        </button>
+    </header>
+    <main>
+        <ng-container *ngTemplateOutlet="recursiveList; context: { tree: this.mTree, base: '' }"></ng-container>
+        <!--
+        <div class="level">
+            <span>Style</span>
+            <div class="level">
+                <a
+                [routerLink]="'./style/main.css'"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                skipLocationChange>sub.css</a>
+                <a
+                [routerLink]="'./style/main.css'"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                skipLocationChange>main.css</a>
+            </div>
+            <a 
+            [routerLink]="'./'"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            skipLocationChange>index.html <span *ngIf="this.mFormGroup.dirty">*</span></a>
+            <a 
+            [routerLink]="'./sub.html'"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            skipLocationChange>sub.html <span *ngIf="this.mFormGroup.dirty">*</span></a>
+            <div class="level">
+                <span>A</span>
+                <div class="level">
+                    <span>B</span>
+                    <div class="level">
+                        <span>C</span>
+                        <div class="level">
+                            <a
+                            [routerLink]="'./style/main.css'"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            skipLocationChange>333</a>
+                        </div>
+                        <a
+                        [routerLink]="'./style/main.css'"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        skipLocationChange>22</a>
+                    </div>
+                    <a
+                    [routerLink]="'./style/main.css'"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    skipLocationChange>1</a>
+                </div>
+            </div>
+        </div>-->
+    </main>
+</aside>
+<form
+[formGroup]="this.mFormGroup">
+    <main>
+        <div
+        [class.show]="this.mSelection.isFile"
+        id="editor"></div>
+    </main>
+</form>

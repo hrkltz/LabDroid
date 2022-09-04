@@ -1,0 +1,40 @@
+div.toast {
+    align-items: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 15px;
+    background-color: #b9b9b9 !important;
+    color: black;
+    box-shadow: 2px 4px 8px 2px rgba(0,0,0,0.11);
+
+
+    &.success {
+        background-color: #4bca81 !important;
+        color: #ffffff !important;
+    }
+
+
+    &.warning {
+        background-color: #ffb75d !important;
+        color: #ffffff !important;
+    }
+
+
+    &.error {
+        background-color: #d4504c !important;
+        color: #ffffff !important;
+    }
+
+
+    & > p {
+        font-size: 18px;
+        text-align: center;
+        margin: unset;
+    }
+}
+

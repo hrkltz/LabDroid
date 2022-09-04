@@ -1,0 +1,9 @@
+<div
+[ngClass]="['toast', data.type]"
+[@fadeAnimation]="{value: animationState, params:
+   { fadeIn: toastConfig.animation.fadeIn, fadeOut: toastConfig.animation.fadeOut }}"
+(@fadeAnimation.done)="onFadeFinished($event)">
+   <!--<mat-icon>{{ iconType }}</mat-icon>-->
+  <p>{{ data.text }}</p>
+  <!--<mat-icon (click)="close()">close</mat-icon>-->
+</div>

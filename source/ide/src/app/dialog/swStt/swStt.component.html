@@ -1,0 +1,40 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.save()">
+    <header>
+        <label>Speech To Text</label>
+        <div>
+            <button
+            class="light"
+            [class.disabled]="!this.mFormGroup.dirty"
+            (click)="this.reset();"
+            type="button">
+                <icon name="revert"></icon>
+            </button>
+        </div>
+        <div>
+            <button
+            class="light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="light destroy"
+            (click)="this.cancel();"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <mat-label>Language</mat-label>
+            <mat-select formControlName="language">
+                <mat-option value="en-US">en-US</mat-option>
+                <mat-option value="de-DE">de-DE</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </main>
+</form>

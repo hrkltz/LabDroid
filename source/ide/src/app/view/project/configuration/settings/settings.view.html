@@ -1,0 +1,20 @@
+<form
+[formGroup]="this.mFormGroup">
+    <header>
+        <label>Settings</label>
+    </header>
+    <main>
+        <div>
+            <mat-form-field>
+                <mat-label>Screen</mat-label>
+                <mat-select
+                #screen
+                formControlName="screen">
+                    <mat-option value="log">Log</mat-option>
+                    <mat-option value="black">Black</mat-option>
+                    <mat-option value="custom">Custom</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </main>
+</form>

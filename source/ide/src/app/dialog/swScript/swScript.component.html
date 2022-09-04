@@ -1,0 +1,34 @@
+<form [formGroup]="this.mFormGroup" (ngSubmit)="this.save()">
+    <header>
+        <label>
+            Script: {{ this.mDialogConfig.data.name }}
+        </label>
+        <div>
+            <button
+            class="designed night light"
+            [class.disabled]="!this.mFormGroup.dirty"
+            (click)="this.reset();"
+            type="button">
+                <icon name="revert"></icon>
+            </button>
+        </div>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.save();">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.cancel();"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div id="editor"></div>
+    </main>
+</form>

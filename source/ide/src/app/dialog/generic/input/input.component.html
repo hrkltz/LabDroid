@@ -1,0 +1,36 @@
+<form
+[formGroup]="this.mFormGroup"
+(ngSubmit)="this.mDialogRef.close(true, this.mFormGroup.controls.name.value)">
+    <header>
+        <label>
+            {{ this.mHeader }}
+        </label>
+        <div>
+            <button
+            class="designed night light primary"
+            [class.disabled]="!(this.mFormGroup.dirty && this.mFormGroup.valid)"
+            type="submit"
+            (click)="this.mDialogRef.close(true, this.mFormGroup.controls.name.value)">
+                <icon name="check"></icon>
+            </button>
+            <button
+            class="designed night light destroy"
+            (click)="this.mDialogRef.close(false)"
+            type="button">
+                <icon name="cross"></icon>
+            </button>
+        </div>
+    </header>
+    <main>
+        <mat-form-field>
+            <input
+            #input
+            id="inputProjectName"
+            type="text"
+            matInput
+            formControlName="name"
+            placeholder="Name"
+            [pattern]="this.mRegExp" />
+        </mat-form-field>
+    </main>
+</form>
