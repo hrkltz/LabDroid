@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="io.github.herrherklotz.chameleon.fragments.MainFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_main">
+    </fragment>
+
+    <fragment
+        android:id="@+id/webFragmentDocumentation"
+        android:name="io.github.herrherklotz.chameleon.fragments.WebFragment"
+        android:label="@string/documentation"
+        tools:layout="@layout/fragment_web" >
+        <argument
+            android:name="section_url"
+            app:argType="string"
+            android:defaultValue="https://herrherklotz.github.io/LabDroid/guide.html" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/webFragmentLog"
+        android:name="io.github.herrherklotz.chameleon.fragments.WebFragment"
+        android:label="@string/log"
+        tools:layout="@layout/fragment_web" >
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/webFragmentPrivacyPolicy"
+        android:name="io.github.herrherklotz.chameleon.fragments.WebFragment"
+        android:label="@string/privacy_policy"
+        tools:layout="@layout/fragment_web" >
+        <argument
+            android:name="section_url"
+            app:argType="string"
+            android:defaultValue="https://herrherklotz.github.io/LabDroid/privacy_policy.html" />
+    </fragment>
+
+
+    <action
+        android:id="@+id/action_to_home"
+        app:destination="@id/mainFragment" />
+
+    <action
+        android:id="@+id/action_to_webFragmentDocumentation"
+        app:destination="@id/webFragmentDocumentation" />
+
+    <action
+        android:id="@+id/action_to_webFragmentLog"
+        app:destination="@id/webFragmentLog" />
+</navigation>
